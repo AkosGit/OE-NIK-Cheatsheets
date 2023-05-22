@@ -1,6 +1,6 @@
 # Numpy
 ## Create array and properties
-```python=
+```python
 np.eye(c)[arr] # 2-D array with ones on the diagonal and zeros elsewhere, 1's pos can be determined by indexing with array
 np.genfromtxt(lul,delimiter=',') # read csv with numpy 
 np.random.randint(2, high=3 size=9) # 2 is the low value
@@ -10,13 +10,13 @@ arr.ndim
 np.shape(X)
 ```
 ## Random
-```python=
+```python
 np.random.seed(42) # random number with seed
 np.random.normal(0.0, 1, (self.n_input, self.n_output))
 np.random.shuffle(dataset) # 
 ```
 ## Filter array or transform/modify
-```python=
+```python
 np.nonzero(arr) # returns the non zero elements
 np.where(arr==1)[1] # filer array results are found in first index
 arr=arr !=0 #array can be filetr this way to
@@ -37,7 +37,7 @@ addTen = np.vectorize(add) # apply function to numpy array
 arr = addTen(arr)
 ```
 ## Multi array operations
-```python=
+```python
 np.column_stack(arr1,arr2)  # Stack 1-D arrays as columns into a 2-D array.
 np.vstack() # Stack arrays in sequence vertically (row wise).
 np.matmul(X,self.W) # Matrix product of two arrays
@@ -45,14 +45,14 @@ x,y = dataset[:,:-1],dataset[:,-1] # x: every column except last,  y:last
 np.concatenate((X, Y), axis=1)
 ```
 ## Masking
-```python=
+```python
 np.array(arr[:]==arr2[:]) # compare arrays outputs mask
 mask = (clusters == cluster)
 target = digits.target[mask] # apply mask
 np.ma.masked_values(arr,1).mask # make mask 1 for true others false
 ```
 ## One value output operations and others
-```python=
+```python
 np.sum(residuals ** 2)
 np.mean(x,axis=0) # axis determines if columns or rows
 np.mean(y_train-y_pred) # mean of the y_train-y_pred values
@@ -64,7 +64,7 @@ np.argmin(distances)
 ```
 
 # Pandas
-```python=
+```python
 pd.DataFrame(inputDict) # create datagrame from dict
 pd.DataFrame(iris.data, columns=iris.feature_names) # data and colum names can be defined seperatly
 df.mean() # 
@@ -91,20 +91,20 @@ df = pd.DataFrame(iris.data, columns=iris.feature_names)
 - átnevezés: ```df['variety'] = df['variety'].map({átírandó:'mire'})```
 - column dropolása: ```df.drop(columns=['sepal_width_(cm)'])```
 ## Modify collums
-```python=
+```python
 df.groupby(["parental level of education"]) # the paramter column will be the "key" like sql
 new_df["density"]=density # create new column, like in a dict
 density= new_df["population"] / new_df["area"] # calc new colums by other columns
 new_df["age"]=np.random.randint(18,67,size=len(new_df)) # columns values by random numbers
 ```
 ## Filter records
-```python=
+```python
 df[df["test preparation course"]=="completed"] # filtering rows by column value
 df.columns.to_series().apply(UpperNotE) # apply to fucntion to series item by item
 np.array([row for row in dataset if row[feature_index]<=threshold])
 ```
 # NAN handling
-```python=
+```python
 np.nanmean(x,axis=0),np.nanvar(x,axis=0) # nan helyére átlag rakás
 x[np.isnan(x)] = 3.5
 df.dropna() # droprows with missing values
@@ -113,7 +113,7 @@ df.dropna() # droprows with missing values
 - train-test splitting:
     - a 'variety' legyen a célfüggvény
     - teszt 30% legyen -> ```test_size=0.3```
-```python=
+```python
 X = df.drop(columns=['variety'])
 y = df['variety']
 from sklearn.model_selection import train_test_split
@@ -121,19 +121,19 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 ```
 ## DecisionTree
 - feltaníttatás
-```python=
+```python
 from sklearn.tree import DecisionTreeClassifier
 
 clf = DecisionTreeClassifier()
 clf = clf.fit(X_train, y_train)
 ```
 - irattass ki pontosságot
-```python=
+```python
 y_pred = clf.predict(X_test)
 print('A modell pontossága:', accuracy_score(y_test, y_pred))
 ```
 - jelenítsd meg a fát
-```python=
+```python
 from sklearn import tree
 fig = plt.figure(figsize=(15,10))
 _ = tree.plot_tree(clf, 
@@ -142,7 +142,7 @@ _ = tree.plot_tree(clf,
                    filled=True)
 ```
 ## Clustering
-```python=
+```python
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 # use the make_blobs function to create the X and y_ture variables
@@ -158,7 +158,7 @@ plt.scatter(centers[:, 0], centers[:, 1], c = 'red', s = 200, alpha = 0.5)
 plt.show()
 ```
 ### Gaussian Mixture Model
-```python=
+```python
 data = pd.read_csv('Clustering_gmm.csv')
 # training gaussian mixture model 
 from sklearn.mixture import GaussianMixture
@@ -178,7 +178,7 @@ for k in range(0,4):
 plt.show()
 ```
 ## SVM
-```python=
+```python
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -195,7 +195,7 @@ truePos=(pred == y_test).sum()
 acc=truePos/len(y_test)
 ```
 ## Gridsearch
-```python=
+```python
 from sklearn.model_selection import GridSearchCV
 param_grid = {'C': [0.1, 1, 10, 100, 1000], # try out parameters which yields the best result
 	'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
@@ -203,7 +203,7 @@ param_grid = {'C': [0.1, 1, 10, 100, 1000], # try out parameters which yields th
 g=GridSearchCV(estimator=SVC(), param_grid=param_grid,verbose=1)
 ```
 ## LinearRegression
-```python=
+```python
 from sklearn.linear_model import LinearRegression, LogisticRegression
 iris=sklearn.datasets.load_iris()
 data=pd.DataFrame(iris.data, columns=iris.feature_names)
@@ -217,7 +217,7 @@ y_pred = model.predict(X_test)
 model.evaluate(reg.X_train,reg.y_train)
 ```
 ## Metrics
-```python=
+```python
 from sklearn.metrics import precision_score # true poz / (true poz + false poz)
 from sklearn.metrics import recall_score # tp / (tp + fn)
 
@@ -231,7 +231,7 @@ from sklearn.metrics import mean_squared_error
 mean_squared_error(y_test, y_pred)
 ```
 # Mathplyplot
-```python=
+```python
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots() 
 plt.scatter(X_test, y_test)
@@ -256,7 +256,7 @@ ax.pie(values, # pie charts
     - specifikus szinekkel
     - 'mapolunk' a species array-nől az i-re
     - ahol a variety megegyezik i-vel kidobjuk scaterrel és az i-edik színnel
-```python=
+```python
 colors = ['red', 'green', 'blue']
 species = ['Setosa', 'Versicolor', 'Virginica']
 for i, species in enumerate(species):
