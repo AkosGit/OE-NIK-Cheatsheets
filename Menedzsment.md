@@ -1,6 +1,3 @@
----
-tags: menedzsment
----
 # Menedzsment cheatsheet
 # Emberek
 ## Skinner
