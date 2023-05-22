@@ -250,6 +250,13 @@ plt.scatter(centers[:, 0], centers[:, 1],c=digits.target_names)
 ax.hist(values,keys) # histogram
 ax.pie(values, # pie charts
 	   labels=keys,autopct='%1.1f%%')
+
+df['variety'].value_counts()
+    .plot(kind='pie',
+        autopct='%1.1f%%',
+        labels=['Setosa',
+                'Versicolor',
+                'Virginica'])
 ```
 
 - plottolás:
