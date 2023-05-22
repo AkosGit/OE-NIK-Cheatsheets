@@ -235,8 +235,8 @@ mean_squared_error(y_test, y_pred)
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots() 
 plt.scatter(X_test, y_test)
-ax.set_xlabel="Writing Score"
-ax.set_ylabel="Number of Students"
+ax.set_xlabel("Writing Score")
+ax.set_ylabel("Number of Students")
 ax.set_title("Distribution of Writing Scores")
 plt.show()
 
