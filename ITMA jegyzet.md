@@ -2,7 +2,9 @@
 tags: itma
 ---
 Pálosi Ákos, Dézsi Csaba
+
 # ITMA jegyzet
+[Magdi néni előadásai/gyakvideói - DIMAT2](https://www.youtube.com/playlist?list=PLhOYgSrY6RXLH0SzTmhm81pdNMeA3J6tv)
 - Csaba: i wanna die, and i will take u with me :D
 - Ákos: not if i take you first 
 - Csaba: hmmmm
@@ -163,9 +165,8 @@ Pálosi Ákos, Dézsi Csaba
 ### Lineáris transzformációk
 - φ lineáris leképezés **lineáris transzformáció**, ha $V_1 = V_2$
 
-![](https://usnotes.szerver.cc/uploads/d8462b71-b95e-4c2c-ac01-e92224af95b1.png)
-![](https://usnotes.szerver.cc/uploads/e3195df6-20f4-4e0b-9f6a-2e6902ac81de.png)
-
+ ![](https://usnotes.szerver.cc/uploads/d8462b71-b95e-4c2c-ac01-e92224af95b1.png)
+ ![](https://usnotes.szerver.cc/uploads/e3195df6-20f4-4e0b-9f6a-2e6902ac81de.png)
 ![](https://usnotes.szerver.cc/uploads/a6cada3b-fb83-43eb-b072-23a13fe1ff56.png)
 
 
@@ -289,12 +290,143 @@ $$s_1·s_2 = \begin{bmatrix}2\\1\end{bmatrix} · \begin{bmatrix}1\\-2\end{bmatri
 
 
 ## Szinguláris érték, szinguláris vektorok
+- szingulársi érték jele: $σ_i$
 **DEF**:
-> - A pozitív $σ1 ⩾ σ2 ⩾ · · · ⩾ σr > 0$ számok az $r$-rangú valós $A$ mátrix szinguláris értékei:
+> - A pozitív $σ_1 ⩾ σ_2 ⩾ · · · ⩾ σ_r > 0$ számok az $r$-rangú valós $A$ mátrix szinguláris értékei:
 >     - ha a **sortér**nek van olyan $(v_1; v_2; . . . ; v_r)$ **ortonormált bázisa**
 >     - és az **oszloptér**nek van olyan $(u_1; u_2; . . . ; u_r)$ **ortonormált bázisa**, hogy: $$Av_i = σ_iu_i; i = 1; . . . ; r$$
 
 - A v$_i$ vektorokat jobb, az u$_i$ vektorokat bal szinguláris vektoroknak nevezzük
+
+#### Mátrix rangja
+- A mátrix Gauss-elimináció után kapott lépcsőfokok azaz a nem nulla nemnulla együtthatókkal rendelkező sorvektorok a mátrix rangja
+- Példa:
+![](https://usnotes.szerver.cc/uploads/abb585b7-21d0-4d33-940d-1c33a5f20ee1.png)
+
+#### Ortonormált bázis:
+> - Legyen $V$ vektortér, amelyen definiálva van egy skaláris szorzat (azaz egy $V×V→R$ szimmetrikus, bilineáris, pozitív definit függvény).
+> - Az $e_1...1_n$ vektorrendszert $V$ **ortonormált bázisának nevezzük**, ha **minimális generátorrendszer** $V$-ben, minden vektora egység hosszúságú és bármely két vektora egymásra merőleges.
+
+#### Sortér, oszloptér
+> - Egy mátrix...
+>     - **oszlopvektor**ai által kifeszített alteret **oszloptér**nek
+>     - **sorvektor**ai által kifeszített alteret **sortér**nek nevezzük
+> - Példa: Az $m×n$-es valós $A$ mátrix **sortere** $R^n$ vektorok által kifeszített altér, **oszloptere** pedig $R^m$ vektorok alkotta altér
+
+![](https://usnotes.szerver.cc/uploads/1e06bdb2-f08c-4cb1-9bf5-c6d0fce0cddf.png)
+
+### Kiegészítés bázissá
+Egészítsük ki $V_1$-et és $U_1$-et a terek ortonormált bázisává:
+$$V = \begin{bmatrix}V_1\\V_2\end{bmatrix} =
+    [v_1 v_2 . . . v_r | v_{r+1} . . . v_n]$$
+
+
+
+$$U = \begin{bmatrix}U_1\\U_2\end{bmatrix} =
+    [u_1 u_2 . . . u_r | u_{r+1} . . . u_m]$$
+
+### A teljes tér bázisával
+![](https://usnotes.szerver.cc/uploads/af098627-774c-45a8-aca5-0eac0bab388c.png)
+
+
+
+### Szinguláris érték felbontás (SVD)
+- Az A mátrix szinguláris érték (szerinti) felbontása (SVD, singular value decomposition)
+$$A = U Σ V^T$$
+- **redukált** szinguláris érték (szerinti) felbontása pedig
+$$A = U_1 Σ_1 V^T$$
+
+![](https://usnotes.szerver.cc/uploads/481780af-defc-4e20-a4de-b0444ef40093.png)
+
+- 1. Meghatározzuk $A^TA$ sajátértékeit $(λi)$ és sajátvektorait $(s_i)$.
+- 2. a **sajátértékek gyökei a szinguláris értékek**: $σ_i = \sqrt{λ_i}$
+- 3. a **jobb szinguláris vektorok a sajátvektorok**: $v_i = \frac{s_i}{|s_i|}$
+- 4. A **bal szinguláris vektorok**:
+        - 4.1 mivel $Av_i = σ_iu_i$, ezért $u_i = \frac{1}{σ_i}Av_i$
+        - 4.2 Másik lehetoség: a bal szinguláris vektorok **megegyeznek** az $AA^T$ **sajátvektoraival**.
+- 5. A szinguláris vektorokból felírható $V_1$ és $U_1$, a **redukált szinguláris** felbontás.
+- 6. A $V$-hez és az $U$-hoz ki kell egészíteni $V_1$-et és $U_1$-et ortonormált bázissá.
+
+- Levezetett feladatmegoldás SVD:
+    - [BME-s SVD megoldás példafeladatokkal, magyarázatokkal](http://sandbox.hlt.bme.hu/~gaebor/ea_anyag/FelsobbMat/SVD.pdf)
+    - [SVD magyarázó moodleából](https://elearning.uni-obuda.hu/main/pluginfile.php/1132265/mod_resource/content/1/dim%20reduction%20with%20SVD.pdf)
+
+- Példa feladat levezetéssel:
+>
+> ![](https://usnotes.szerver.cc/uploads/76c5e624-d15d-418d-9356-a6ecb368162d.png)
+> 
+> ![](https://usnotes.szerver.cc/uploads/05de958f-cc4a-45bd-a9a7-2ea759b4985c.png)
+> 
+> ![](https://usnotes.szerver.cc/uploads/f9303c70-ac7e-4ce8-9e88-d27cc4498d95.png)
+> 
+> ![](https://usnotes.szerver.cc/uploads/24e8fcb2-7c5a-4f10-a121-e2c129531ca0.png)
+> 
+> ![](https://usnotes.szerver.cc/uploads/818f50af-247c-4c6b-a41d-5e44852c5178.png)
+> 
+> ![](https://usnotes.szerver.cc/uploads/be7ac769-c28c-47bf-bb28-b880078fc9ee.png)
+
+
+### SVD HATÁSA
+- Legyen $A$ egy r-rangú, $m × n$-es valós mátrix.
+- Az $x → Ax$ leképezés az Rn tér $e^Te$ = $1$ egyenletet kielégítő egységgömb felületén lévo pontjait az $R^m$ tér egy $r$-dimenziós alterének...
+    - egy **ellipszoidjának felületére** képezi, ha $r = n$
+    - egy **ellipszoidja által határolt** tartományára képezi, ha $r < n$
+
+
+## OPTIMALIZÁLÁS
+### Mátrixok definitsége
+- $x^T$ az x mátrix transzponáltját jelenti
+- Az $A ∈ R^{n×n}$ mátrix **pozitív definit**, ha
+$$x^T Ax > 0,$$ $$[x^T Ax < 0],$$ $$(x ∈ R^n, ∀x \neq 0)$$
+
+- Az $A∈R^{n×n}$ mátrix **pozitív szemidefinit**, ha
+$$x^T Ax ⩾ 0,$$ $$[x^T Ax ⩽ 0],$$ $$(∀x ∈ R^n)$$
+
+- Az $A ∈ R^{n×n}$ mátrix **indefinit**, ha egyik fenti kategóriába sem tartozik.
+- Megjegyzés.: Az A mátrix pontosan akkor **negatív [szemi]definit**, ha $−A$ pozitív [szemi]definit.
+
+- Az $[a_{ij}]^n_{i,j=1} ∈ R^{n×n}$ mátrix $k$-**adik** **főminormátrix**a az
+![](https://usnotes.szerver.cc/uploads/c7432543-a1b0-4641-9066-e8d957041610.png)
+
+- Tétel: A szimmetrikus $A ∈ R^{n×n}$ mátrix pontosan akkor **pozitív [negatív] definit**, ha
+![](https://usnotes.szerver.cc/uploads/08f8ce17-ff1e-4c8f-b3ee-af4100ac137c.png)
+
+> - Tételek:
+>     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor pozitív [negatív] definit**, ha $A$ **minden sajátértéke** pozitív[negatív] (valós) szám.
+> 
+>     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix pontosan akkor pozitív [negatív] szemidefinit, ha A **minden sajátértéke** nem-negatív [nem-pozitív] (valós) szám.
+> 
+>     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor** pozitív definit, ha az $A = LU$ felbontásában – ahol $L$ egység alsóháromszög-mátrix és $U$ felsőháromszög-mátrix – az $U$ mátrix minden diagonális eleme pozitív
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
