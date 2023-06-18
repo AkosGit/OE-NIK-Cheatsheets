@@ -2,13 +2,13 @@
 tags: itma
 ---
 Pálosi Ákos, Dézsi Csaba
-
+> **WARNING: Math is gonna get ya. So be warned, this doc is gonna meth you up real bad, readers be warned!**
 # ITMA jegyzet
 [Magdi néni előadásai/gyakvideói - DIMAT2](https://www.youtube.com/playlist?list=PLhOYgSrY6RXLH0SzTmhm81pdNMeA3J6tv)
 - Csaba: i wanna die, and i will take u with me :D
 - Ákos: not if i take you first 
 - Csaba: hmmmm
-## Átlalános cuccok / bevezető
+## ÁLTALÁNOS CUCCOK, BEVEZETŐ
 ### 1: alapfogalmak és műveletek
 - „Alaki” műveletek:
     - alak megváltoztatása (átméretezés), transzponálás
@@ -39,7 +39,7 @@ Pálosi Ákos, Dézsi Csaba
 
 
 
-### 2.:Tömbök
+### 2.:TÖMBÖK
 - A kétdimenziós tömbnek két mérete van:
     - 1.: sorok száma
     - 2.: oszlopok száma (ilyen sorrendben).
@@ -62,7 +62,7 @@ Pálosi Ákos, Dézsi Csaba
         -  szorozzuk 2D-vel.
         - ```(k,m,n) és (n,p)``` szorzás eredménye ```(k,m,p)``` méretű.
 
-## Broadcasting
+## BROADCASTING
 - [Broadcasting csodái :D -> python array broadcasting](https://jakevdp.github.io/PythonDataScienceHandbook/02.05-computation-on-arrays-broadcasting.html)
 - Broadcasting => dimezió kiterjesztést jelent
 - összeadásnál alkalmazható
@@ -86,7 +86,7 @@ Pálosi Ákos, Dézsi Csaba
 ![](https://usnotes.szerver.cc/uploads/9e422fcb-3b5e-4ff4-81f6-d835446cf537.png)
 
 
-## Norma
+## NORMA
 - Vektor: 1 dimenziós mátrix
 - Vektortér: Vektortér kb. amelynek elemei korlátlanul és egyértelmüen **összeadhatók** és számmal **szorozhatók**.
 - Def: ![](https://usnotes.szerver.cc/uploads/24be97e2-4412-468b-95d0-15495e1b7250.png)
@@ -106,7 +106,7 @@ Pálosi Ákos, Dézsi Csaba
  
 ![](https://usnotes.szerver.cc/uploads/a702794c-febf-4dee-be79-291f34a4d43b.png)
 
-## Metrika
+## METRIKA
 - Általánosított távolság.
 - Két vektor távolsága
     - $v=[v_1,v_2],w=[w_1,w_2]$ 
@@ -136,7 +136,7 @@ Pálosi Ákos, Dézsi Csaba
 - **MAE RMSE/MSE**: becslési hibák megtalálása
 - ![](https://usnotes.szerver.cc/uploads/f5f8e988-ee97-460d-b5ff-9905d8d456ce.png)
     - x becslései 0.1 el térnek el (1-0.9=0.1) ezeket összeadva jön ki a 0.4
-## Bázis, Vektortér
+## BÁZIS, VEKTORTÉR
 [ELTE vektorok és vektor terek](https://nimbus.elte.hu/~hagi/segedanyag/vektorszamitas_felev2/vektor_felev2_jegyzet2019.pdf)
 > - **lineáris függetlenség**: A lineáris algebrában vektorok egy halmazát lineárisan függetlennek nevezzük, ha egyikük sem fejezhető ki a többi vektor lineáris kombinációjaként. Ellenkező esetben lineárisan összefüggő vektorokról beszélünk.
 > - **Síkvektor**t definiáló szabályok
@@ -154,7 +154,7 @@ Pálosi Ákos, Dézsi Csaba
 > - Vektortér **bázis**ának nevezzük a vektortér **lineárisan független** generátorrendszerét.
 
 
-## Lineáris leképezések
+## LINEÁRIS LEKÉPEZÉSEK
 - Lineáris leképezés
 - $V_1$ és $V_2$ ugyanazon T test feletti vektorterek.
 - A φ: $V_1$ → $V_2$ függvény lineáris leképezés, ha
@@ -165,8 +165,9 @@ Pálosi Ákos, Dézsi Csaba
 ### Lineáris transzformációk
 - φ lineáris leképezés **lineáris transzformáció**, ha $V_1 = V_2$
 
- ![](https://usnotes.szerver.cc/uploads/d8462b71-b95e-4c2c-ac01-e92224af95b1.png)
- ![](https://usnotes.szerver.cc/uploads/e3195df6-20f4-4e0b-9f6a-2e6902ac81de.png)
+![](https://usnotes.szerver.cc/uploads/d8462b71-b95e-4c2c-ac01-e92224af95b1.png)
+![](https://usnotes.szerver.cc/uploads/e3195df6-20f4-4e0b-9f6a-2e6902ac81de.png)
+
 ![](https://usnotes.szerver.cc/uploads/a6cada3b-fb83-43eb-b072-23a13fe1ff56.png)
 
 
@@ -193,7 +194,7 @@ mátrixa áll hátrébb a szorzatban
 
 ~~Tranformationceptioooon~~
 
-## Kép és Magtér
+## KÉP ÉS MAGTÉR
 ### Képtér
 >  **DEF**:
 > - $φ: V → V$ lineáris transzformáció
@@ -391,32 +392,147 @@ $$x^T Ax ⩾ 0,$$ $$[x^T Ax ⩽ 0],$$ $$(∀x ∈ R^n)$$
 - Tétel: A szimmetrikus $A ∈ R^{n×n}$ mátrix pontosan akkor **pozitív [negatív] definit**, ha
 ![](https://usnotes.szerver.cc/uploads/08f8ce17-ff1e-4c8f-b3ee-af4100ac137c.png)
 
-> - Tételek:
->     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor pozitív [negatív] definit**, ha $A$ **minden sajátértéke** pozitív[negatív] (valós) szám.
+>   - **Tételek**:
+>      - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor pozitív [negatív] definit**, ha $A$ **minden sajátértéke** pozitív[negatív] (valós) szám.
+>  
+>      - Az $A ∈ R^{n×n}$ szimmetrikus mátrix pontosan akkor pozitív [negatív] szemidefinit, ha A **minden sajátértéke** nem-negatív [nem-pozitív] (valós) szám.
+>         - nem-negatív: 0, vagy pozitív(sajátértékek⩾0)
+>         - nem-pozitív: 0, vagy negatív(sajátérték⩽0)    
+>     
+>     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor** **pozitív definit**, ha az $A = LU$ felbontásában
+>         - ahol $L$ egység alsóháromszög-mátrix és $U$ elsőháromszög-mátrix
+>         - az $U$ mátrix minden diagonális eleme pozitív
+>         - **diagonális elem:** a főátlón található elemek
+>         - A háromszögmátrix olyan négyzetes mátrix, melynek a főátlója alatti összes elem vagy a főátlója feletti összes elem zéró.
+         
+- **Pozitív definit magyarúl:** a felső $U$ háromszögmátrixba bele kell venni a főátló elemit és csak ezeknek az elemeknek kell pozitívnak lenniük. Ezek alapján a lenti mátrix eleget a definíciónak
+    $$U = \begin{bmatrix}
+    \color{red}{4} & -2 & 2 \\
+    0 & \color{red}{4.5} & -3 \\
+    0 & 0 & \color{red}{1.6}
+    \end{bmatrix}$$
+
+
+
+## Többváltozós deriváltak
+- ∇: ez a szar a 'Nebla', jelentése ismeretlen :D, a vadonban, matematikai és fizikai papírokban viszonylag gyakran előfordul a gradiens vektorok témakörében
+- Az $f : R^n → R$, $n$-változós valós függvény **gradiense** (graidensvektora)
+$$∇f(x) =
+\begin{bmatrix}
+    \frac{∂f(x)}{∂x_1} ; . . . ;\frac{∂f(x)}{∂x_n}
+\end{bmatrix}^T
+= ∇xf(x)$$
+
+- Az $f : R^n → R$, $n$-válozós valós függvény Hesse-mátrixa
+![](https://usnotes.szerver.cc/uploads/05c8461e-db30-4849-80cf-be73f9195d90.png)
+
+- **Hesse mátrix**: egy többváltozós valós függvény másodrendű parciális deriváltjaiból alkotott négyzetes mátrixát nevezzük. Lényegében ez a szar itt (ugyan az mint a fenti ábra, csak anál jegyzetből van, nem dimat):
+$$\begin{bmatrix}
+f\:'_{xx}\left(P_0\right)&f\:'_{xy}\left(P_0\right)\\ f\:'_{yx}\left(P_0\right)&f\:'_{yy}\left(P_0\right)
+\end{bmatrix}$$
+
+
+### Gradiensmátrix:
+$$F : R^n → R^m \\
+F(x) = [F_1(x) ; . . . ; F_m(x)],\\
+F_i : R^n → R$$ 
+- vektor-vektor függvény gradiense (gradiensmátrixa) a
+$$∇F(x) = [∇F_1(x) ; . . . ; ∇F_m(x)] ∈ R^{n×m}
+$$
+- Az $f(x)$ mennyiség $O(g(x))$ = **ordó** $gx$ nagyságrendü
+    - ha $∥f(x)∥ ⩽ K ∥g(x)∥$ egyenloség igaz valamely $K > 0$ konstans esetén
+
+### Taylor-sorok:
+- Taylor-sor összegfüggvénye (anal2 definició kicsit érthetőbb mint a lenti borzalom :D)
+$$f(x)=\sum_{k=0}^\infty f^{(k)}(a)\frac{(x-a)^k}{k!}$$
+- A **Taylor-sor magyarúl**: hatványsorokkal megközeliteni egy bonyolult fügvénynt
+- Taylor sor formális definiciója
+![](https://usnotes.szerver.cc/uploads/f367f52a-f69e-42de-90fc-ca41406b492c.png)
+
+#### Két speciális esetet különítünk el:
+#### 1.eset :
+> - Az $f : R^n → R$ függvény $x_0 ∈ R^n$ pontbeli lineáris közelítése az f elsorendű Taylor-polinomja:
+> $$f(x_0 + p) ≈ f(x_0) + ∇f(x_0)^T p,\\ p ∈ Rn$$
+> - A közelítés hibája $O(∥p∥2)$, ha $f$ **kétszer folytonosan** differenciálhat:
+> $$y = y(p) = f(x_0) + ∇f(x_0)^T p$$
 > 
->     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix pontosan akkor pozitív [negatív] szemidefinit, ha A **minden sajátértéke** nem-negatív [nem-pozitív] (valós) szám.
+#### 2.eset.:
+> - Az $f : R^n → R$ függvény $x_0 ∈ R^n$ pontbeli **kvadratikus közelítése** az f másodrendű Taylor-polinomja
+> $$f(x0 + p) ≈ f(x_0) + ∇f(x_0)^T
+> p +\frac{1}{2}p^T ∇^2f(x_0) p,\ \ (p ∈ R^n)$$
 > 
->     - Az $A ∈ R^{n×n}$ szimmetrikus mátrix **pontosan akkor** pozitív definit, ha az $A = LU$ felbontásában – ahol $L$ egység alsóháromszög-mátrix és $U$ felsőháromszög-mátrix – az $U$ mátrix minden diagonális eleme pozitív
+> - A közelítés hibája $O(∥p∥^3)$, ha f háromszor folytonosan differenciálható.
+> - Az $$y = f(x_0) + ∇f(x_0)T_p +\frac{1}{2}p^T ∇^2f(x_0) p$$ másodfokú függvény az f függvény grafikonjának érinto paraboloidja az $\frac{x_0}{f(x_0)}∈ R^{n+1}$ pontban
+
+### Függvények szélsőértéke
+##### Abszolút szélsőértékhely
+- Az $f : R^n → R \ \ \ (n ⩾ 1)$ függvény abszolút (globális) minimumhelye [maximumhelye] az $x^∗ ∈ D(f)$ pont, ha
+$$f(x^∗) ⩽ f(x)\ \ \ [f(x^∗) ⩾ f(x)]\ \ \ ∀x ∈ D(f).$$
+
+##### Gömbi környezet
+- Az $S(x^∗; δ) = {x ∈ R^n| \ ∥x − x^∗∥ \ < δ}⊂R^n$ halmaz az $x^∗ ∈ R^n$ pont δ sugarú (δ > 0) nyílt (gömbi)
+környezete
+
+##### Lokális szélsőértékhely
+- Az $f : R^n → R$ (n ⩾ 1) függvény lokális **minimum [maximum]helye** az $x^∗ ∈ D(f)$ pont, ha létezik $δ > 0, hogy
+$$f(x^∗) ⩽ f(x)\\ [f(x^∗) ⩾ f(x)]\\ ∀x ∈ D(f) \ ∩ \ S(x^∗; δ).$$
+
+##### Erős/szigorú szélsőértékhely
+- Az $x∗ ∈ D(f)$ **minimum [maximum]hely** erős (szigorú), ha valamely $δ > 0$ esetén
+$$f(x^∗) < f(x), \\ [f(x^∗) > f(x)] \\ ∀x ∈ D(f) ∩ S(x^∗; δ), x \neq x^*$$
+
+##### Gyenge szélsőértékhely
+- Ha a szélsoértékhely nem erős (szigorú), akkor **gyenge**.
+
+##### Szélsőérték
+- A szélsoértékhelyen (minimumhelyen/maximumhelyen) felvett függvényérték a szélsőérték (minimumérték/maximumérték).
+
+---
+#### Egyváltozós
+##### Elsorendü szükséges feltétel 
+- Ha $f : R → R$ függvénynek $x^∗$ pontban szélsoértéke van, és f folytonosan differenciálható $x^∗$ pontban, akkor $f′(x^∗) = 0$.
+
+##### Másodrendű szükséges feltétel
+- Ha $f : R → R$ függvénynek $x^∗$ pontban minimuma [maximuma] van, és $f$ kétszer folytonosan differenciálható $x^∗$ pontban, akkor $$f′(x^∗) = 0\\ és \\f′′(x^∗) ⩾ 0 [f′′(x^∗) ⩽ 0]$$
+
+##### Másodrendű elégséges feltétel
+- Ha $f : R → R$ függvény kétszer folytonosan differenciálható $x^∗$ pontban, $f′(x^∗) = 0 \  \text{és} \ f′′(x^∗) > 0 [f′(x^∗) < 0]$, akkor $x^∗$ az f függvény minimumhelye [maximumhelye].
+
+---
+#### **Többváltozós**
+##### Elsőrendű szükséges feltétel
+- Ha $f : R^n → R$ függvénynek $x^∗$ pontban szélsőértéke van, és $f$ folytonosan differenciálható $x^∗$ pontban, akkor: $∇f(x^∗) = 0$
+
+##### Terminológia
+- A $∇f(x^∗) = 0$ elsorendű szükséges feltétel elnevezése **stacionárius egyenlet**.
+- 
+##### Másodrendű szükséges feltétel
+- Ha $f : R^n → R$ függvénynek $x^∗$ pontban minimuma [maximuma] van, és $f$ kétszer folytonosan differenciálható $x^∗$ pontban, akkor $∇f(x^∗) = 0$, és a $∇^2f(x^∗)$ Hesse-mátrix pozitív [negatív] szemidefinit.
+
+##### Másodrendű elégséges feltétel
+- Ha $f : R^n → R$ kétszer differenciálható $x^∗$ pontban, $∇f(x^∗)=0$, és a $∇^2f(x^∗)$ Hesse-mátrix pozitív [negatív]definit, akkor $x^∗$ az $f$ függvény minimumhelye [maximumhelye].
+#### Megjegyzések
+- A Hesse-mátrix definitsége a függvény adott pontbeli (lokális) görbültségével van kapcsolatban. A Taylor-sor alapján:
+    - Ha $∇^2f(x^∗)$ pozitív szemidefinit, akkor az $f$ függvény $x^∗$ pontban lokálisan konvex (ha pozitív definit, akkor szigorúan konvex), mert grafikonja az adott pontban az érintosíkhoz képest minden irányban felfelé görbül.
+    - Ha $∇^2f(x^∗)$ negatív szemidefinit, akkor az f függvény $x^∗$ pontban lokálisan konkáv (ha negatív definit, akkor szigorúan konkáv), mert grafikonja az adott pontban az érintosíkhoz képest minden irányban lefelé görbül
+
+- A szükséges feltétel szemléletesen azt állítja, hogy minimumhelyen [maximumhelyen] a függvény grafikonjának érintosíkja vízszintes, és a függvény (lokálisan) konvex [konkáv].
+- Az elégséges feltétel szemléletesen azt állítja, hogy ha egy pontban a függvény grafikonjának érintosíkja vízszintes, és ott a függvény (lokálisan) szigorúan konvex [szigorúan konkáv], akkor a pont erős (szigorú) minimumhely [maximumhely].
 
 
+#### Megjegyzések 2
+- A ∇f(x) = 0 ($f : R^n → R$) egyenlet megoldását általában az f **stacionárius** pontjának, ritkábban kritikus pontjának nevezik.
+- Az $f$ függvény $x^∗$ **stacionárius** pontja nem-elfajult (nem-degenerált), ha $det(∇^2f(x^∗)) \neq 0$.
+
+- Az $f$ függvény $x^∗$ nem-elfajuló **stacionárius** pontjaiban a $∇^2f(x^∗)$ Hesse-mátrixnak $ℓ$ pozitív és $n − ℓ$ negatív sajátértéke van $(0 ⩽ ℓ ⩽ n)$, azaz nincs 0 sajátértéke.
+    - Ha $ℓ = 0$, akkor $∇^2f(x^∗)$ negatív definit ($x^∗$ maximumhely).
+    - Ha $ℓ = n$, akkor $∇^2f(x^∗)$ pozitív definit ($x^∗$ minimumhely).
+    - Ha $0 < ℓ < n$, akkor **Morse**-féle $ℓ$-nyeregrol, vagy egyszerűen **nyeregpontról** beszélünk.
+- Nyeregpontban nincs szélsoérték.
+- Elfajult (degenerált) **stacionárius** pontban azonban lehet szélsoérték (lásd, pl. $f(x_1; x_2) = x^{4}_1 + x^{4}_2$ a $x^∗ = [0; 0]^T$ pontban), de ezek vizsgálata bonyolult.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## NUMERIKUS MINIMUMKERESŐ ELJÁRÁSOK
 
 
 
