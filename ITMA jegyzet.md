@@ -2,7 +2,7 @@
 tags: itma
 ---
 Pálosi Ákos, Dézsi Csaba
-> **WARNING: Math is gonna get ya. So be warned, this doc is gonna meth you up real bad, readers be warned!**
+> **WARNING: Math is gonna get methy. So be warned, this doc is gonna meth you up real bad, readers be warned!**
 # ITMA jegyzet
 [Magdi néni előadásai/gyakvideói - DIMAT2](https://www.youtube.com/playlist?list=PLhOYgSrY6RXLH0SzTmhm81pdNMeA3J6tv)
 - Csaba: i wanna die, and i will take u with me :D
@@ -533,29 +533,331 @@ $$f(x^∗) < f(x), \\ [f(x^∗) > f(x)] \\ ∀x ∈ D(f) ∩ S(x^∗; δ), x \ne
 
 
 ## NUMERIKUS MINIMUMKERESŐ ELJÁRÁSOK
+### Egyváltozós függvények numerikus minimumkereső eljárásai
+#### Direkt és indirekt kereső eljárások
+- **Direkt** kereso eljárások:
+    - Egy $[a_0; b_0]$ intervallumból indul, amely tartalmazza az $x^∗$ minimumpontot(befoglaló intervallum)
+    - A kezdeti befoglaló intervallumot szűukíti az eljárás addig, amíg a megfelelo pontosságot el nem éri.
+- **Indirekt** kereso eljárások:
+    - Az $f′(x) = 0$ (többváltozós esetben a $∇f(x) = 0$) stacionárius egyenletet oldja meg numerikusan
+
+#### Egyváltozós függvények direkt eljárásai
+#### Unimodális függvény
+> - **unimodális**: Szimmetrikus, szabályos
+- Az $f : [a; b] → R$ függvény unimodális, ha bármely $x1, x2 ∈ [a; b], x_1 < x_2$ pont esetén 
+$$x_2 ⩽ x^∗ ⇒ f(x_1) > f (x_2),\\
+x^∗ ⩽ x_1 ⇒ f(x_1) < f (x_2)$$
+- **Szemléletesen**: ha $f$ **unimodális** és $x^∗$ a minimumpontja, akkor $f$ az $x^∗$-tól **balra szigorúan monoton fogy** (igen a tanár így írta :D), míg **tőle jobbra szigorúan monoton nő**
+
+#### Szigorúan konvex függvény
+- Az $f : [a; b] → R$ függvény szigorúan konvex, ha bármely $x, y ∈ [a; b], x \neq y$ esetén
+$$f(λx + (1 − λ) y) < λf(x) + (1 − λ)f(y), \ \  ∀λ ∈ (0; 1).
+$$
+- Észrevétel: A szigorúan konvex függvények unimodálisak.
+#### Megállapítás
+- Vegyünk két közbülso pontot: $a < c < d < b$. Ha f unimodális, akkor
+    - ha $f(c) < f(d)$, akkor $x^∗ ∈ [a; d];$
+    - ha $f(c) ⩾ f(d)$, akkor $x^∗ ∈ [c; b]$
+#### Szemléletesen
+- A befoglaló intervallum bal vagy jobb végpontját aszerint lehet „beljebb húzni”, hogy a két közbülső pontban felvett értékkel biztosítani lehessen, hogy a függvény megtartja unimodális jellegét (az „U” alakját).
+- Egyetlen közbülso pont felhasználásával nem lehet az intervallumot szűkíteni.
+
+#### Általános kereso eljárás
+
+```pseudo=
+input [a, b], ε > 0
+repeat
+    select c, d ∈ (a, b) such that c < d.
+    if f(c) < f(d)
+        b = d
+    else
+        a = c
+    end
+end until b − a < ε
+```
+- Közbülso pontok megválasztása:
+    - Az egyik belso pont az új intervallum végpontja lesz, a másik pedig belso pontja.
+    - Az utóbbi helyen már egyszer kiszámított függvényértéket jó lenne felhasználni a következo ciklusban, gyorsítva ezzel az eljárást.
+    - Kellene, hogy az új belső pont az új intervallumban is „jó” helyen legyen, vagyis a régi-új belső pont ugyanolyan arányban ossza az új intervallumot, mint a régit.
+    - **Megoldás: aranymetszés**
+
+#### Aranymetsző minimumkereső eljárás
+- Az aranymetszés aránya:
+$$φ = \frac{1 +
+\sqrt{5}}{2} ≈ 1,618$$
+- a két osztópont következő arányban osztja az intervalloumot:
+$$τ_2 = \frac{1}{φ} = \frac{\sqrt{5} − 1}{2} ≈ 0,618 \\
+τ_1 = 1 − τ_2 = \frac{3−\sqrt{5}}{2}≈ 0,382$$
+- Megjegyzés: $τ_1 < τ_2$
+- algoritmusa:
+Set $τ_1 = \frac{3-\sqrt{5}}{2} ≈ 0.382, \ \ τ_2 = \frac{\sqrt{5}-1}{2}≈ 0.618.$
+```pseudo=
+Input [a, b], ε > 0
+c = a + τ_1 (b − a), Fc = f(c)
+d = a + τ_2 (b − a), Fd = f(d)
+while b − a ⩾ ε do
+    if F  < F_d
+        b = d, d = c
+        c = a + τ1 (b − a)
+        F_d = F_c , F_c = f(c)
+    else
+        a = c, c = d
+        d = a + τ2 (b − a)
+        F_c = F_d , F_d = f(d)
+    end
+end
+```
+
+### Konvergencia
+- Világos, hogy a kiszámított intervallumsorozat kielégíti a 
+$$[a_0; b_0] ⊃ [a_1; b_1] ⊃ . . . ⊃ [a_k ; b_k ] ⊃ . . .$$
+relációláncot úgy, hogy minden egyes $[a_k ; b_k ]$ intervallum tartalmazza az $x^∗$ minimumpontot.
+- Ha $b_k − a_k < ε$, akkor az $[a_k ; b_k ]$ bármelyik pontja választható az $x^∗$ minimumpont legfeljebb $ε > 0$ hibájú közelítésének.
+- A **legjobb közelítés** azonban $\tilde{x} = \frac{a_k + b_k}{2}$,
+    - amelynek hibája $|x − x^*|<\frac{ε}{2}$
+
+- Az aranymetsző eljárás **konvergenciája lineáris**.
+- Az aranymetszo eljárást alkalmazzák nem-unimodális függvényre is, de ebben az esetben a konvergencia nem garantálható
+
+#### Newton-módszer (Newton–Raphson-módszer; érintő módszer)
+- Analízis I. ismétlés. Az $f(x) = 0$ egyenlet gyökközelíto sorozata:
+$$x_{n+1} = x_n −\frac{f(x_n)}{f'(x_n)}.$$
+- Ha az $f$ szélsoértékhelyét keressük, akkor az $f′(x) = 0$ stacionárius egyenlet gyökközelíto sorozata:
+$$x_{n+1} = x_n − \frac{f′(x_n)}{f′′(x_n)}$$
+- Megállási feltétel: ha a Newton-lépés elég kicsi, azaz
+$$|x_{n+1} − x_n| =\frac{f′(x_n)}{f′′(x_n)}< ε$$
+
+- Newton-Raphson Method: [GeoGebra](https://www.geogebra.org/m/DGFGBJyU)
+![](https://usnotes.szerver.cc/uploads/70ace84d-2106-40d3-a699-152ebd8c477c.png)
+
+### Többváltozós függvények numerikus minimumkereső eljárásai
+- Ha a többváltozós $f$ szélsoértékhelyét keressük, a  $∇f(x) = 0$ **stacionárius** egyenlet gyökközelítő sorozata:
+$$x_{k+1} = x_k −[∇2f(xk )]^{i−1}∇f(x_k)$$
+
+- Az inverzmátrix kiszámítása igen költséges, ezért inkább az
+$$s_k = −[∇2f(x_k)]^{−1} ∇f(x_k)\ \ \ \text{Newton-lépést a}\\
+∇^2f(x_k) s_k = −∇f(x_k)\\ \text{lineáris egyenletrendszerből számítjuk ki.}$$
+
+- A Hesse-mátrix szimmetrikus, szerencsés esetben ($f$ szigorúan
+konvex) **pozitív definit**
+
+- Az ilyen egyenletrendszerek megoldására léteznek hatékony megoldások
+
+- Newton algoritmus:
+![](https://usnotes.szerver.cc/uploads/b2569777-b799-42ab-90c9-656318b9c8fa.png)
+
+
+#### Kvázi-Newton-módszerek
+- A kvázi-Newton-módszerek a Newton-módszerek iterációnkénti alacsony számítási költség˝u, mégis nagy hatékonyságú módosításai. Az alapötlet a $∇^2f(x_k)$ Hesse-mátrix helyettesítése egy szimmetrikus, pozitív definit $H_k$ mátrixszal, amely jól közelíti a Hesse-mátrixot, és a számítási költsége alacsony. A következő algoritmus az egyik leghatékonyabb a numerikus eljárások között.
+##### BFGS (Broyden–Fletcher–Goldfarb–Shanno) algoritmus
+for k = 0, 1, . . .
+$$
+\begin{aligned}
+\\
+&\textbf{s}_{k}=-\textbf{H}_{k}^{-1}\nabla f(\textbf{x}_{k}) \\
+&\textbf{x}_{k+1}=\textbf{x}_{k}+\textbf{s}_{k} \\
+&\textbf{y}_k=\nabla f(\textbf{x}_{k+1})-\nabla f(\textbf{x}_k) \\
+&\textbf{H}_{k+1}^{-1}=\left(\textbf{I}-\frac{\textbf{s}_{k}\textbf{y}_{k}^{T}}{\textbf{y}_{k}^{T}\textbf{s}_{k}}\right)\textbf{H}_{k}^{-1}\left(\textbf{I}-\frac{\textbf{y}_{k}\textbf{s}_{k}^{T}}{\textbf{y}_{k}^{T}\textbf{s}_{k}}\right)+\frac{\textbf{s}_{k}\textbf{s}_{k}^{T}}{\textbf{y}_{k}^{T}\textbf{s}_{k}}\\
+\end{aligned}
+$$
+end
+- A $H_0$ a $∇^2f(x^∗)$ egy közelítése, de gyakran egyszerűen az $n × n$-es egységmátrixot választják
+
+#### Vonalmenti minimumkereső eljárások
+##### Általános alak
+- A vonalmenti keresés általános algoritmusa:
+    - Az $x_k$ iterációs pontban találjunk keresési irányt: $s_k$.
+    - Menjünk ebben az irányban valamennyit: $x_{k+1} = x_k + α_ks_k$.
+- Természetesen, nem mindegy, hogy milyen irányban és mennyit megyünk
+    - Rögzítsük, hogy $s_k$ legyen csökkenési irány: $∇f(x_k )^Ts_k < 0$ (tompaszöget zárnak be).
+    - Ekkor $α_k ⩾ 0$, amelynek neve learning rate
+    - Minimalizáljuk a $g(α) = f(x_k + αs_k)$ egyváltozós függvényt az $α ⩾ 0$ tartományon: $α_k = arg min g(α)$. (Azaz haladjunk csökkenési irányban, egyenes mentén addig, amíg csökkenést tapasztalunk. Ott válasszunk másik irányt.)
+- Vonalmenti minimumkereső 
+![](https://usnotes.szerver.cc/uploads/09fdb8a9-1fd3-46a1-bc34-669411082913.png)
+
+##### Keresési irány megválasztása
+![](https://usnotes.szerver.cc/uploads/d0d406f5-0594-4204-a6b5-cbb1cb72d96e.png)
+
+- Véletlenszerűen
+- Legnagyobb csökkenési irány: $s_k = −∇f(x_k)$.
+- Newton-szerű módszerek: $s_k=−H^{−1}_k ∇f(x_k)$, ahol $H_k$ szimmetrikus pozitív definit mátrix.
+- Az eredeti Newton-módszer konkrétan:
+$H_k = ∇^2f(x_k) (\text{ és } α_k = 1)$
+- Hooke–Jeeves-módszer:
+    - $s_k$ keresési irányok a $±e_1, ±e_2, . . . , ±e_n ∈ R^n$ egységvektorok ciklikusan, azaz 
+$$s_k=±e_j, \text{ ha  } k ≡ j\ mod\ n$$
+    - a ± közül mindig az, amelyik csökkenési irányba mutat. (A konvergencia nem minden esetben
+garantálható.)
+
+- A learning rate megválasztása
+    - Konstans.
+    - Heurisztikus, pl.: $α_k=\frac{1}{k+1}$
+    - Minimalizáló: $α_k = \text{arg min}_{α⩾0} \ f(x_k + αs_k)$
+
+- Kombinált módszerek
+    - Newton-módszer vonalmenti minimalizálással.
+    - DFP (Davidon–Fletcher–Powell) algoritmus: 
+        - BFGS algoritmus vonalmenti minimalizálással
+
+
+## LINEÁRIS REGRESSZIÓ
+### Ismétés és kiegészítés
+> - Adottak az $(x_i; y_i), i = 1, 2, . . . , n$ megfigyelések $(X; Y)$-ból.
+>     - Cél megtalálni az $f(Y|X)$ regressziós függvény becslését, amely minimalizálja $E*((Y − f(X))^2)-t$
+> 
+>     - Tapasztalati úton: keressük $\ \ arg \ min_f\frac{1}{n} \sum_i{(y_i − f(x_i))^2}$-t egy nem túl nagy függvényosztályból $(f ∈ F)$
+>     - például a nyers leíró változók lineáris kombinációi közül: $$f(x_i) = β_0 + \sum^P_{j=1}\ β_j\ x_{i;j}$$
+> 
+> 
+> - Ha az $F$ függvényosztály véges dimenziós lineáris tér (pl. a legfeljebb d fokú polinomok), akkor f becsülheto az $f_1, . . . , f_r$ bázis rögzítésével. Ekkor $\overset{ˆ}{f}=\sum_k f_k\overset{ˆ}{\beta_k}$ , ahol
+> $\overset{ˆ}{β}_k = \text{arg min}_β \frac{1}{n}\sum_i(y_i-\sum_k f_k (x_i)\beta_k)^2$. 
+>     - Tehát a függvényosztályon végzett regresszió (r dimenziós) lineáris regresszióvá egyszer˝usödik a transzformált adatokon: $(f_1(x_i) ; . . . ; fr(x_i) ; y_i)$.
+> 
+> 
+> - Geometriai szemlélet: 
+>     - $y ∈ R^n$ a célváltozó (response) vektora, $X$ pedig a leírók (predictor), konstanssal kibovített mátrixa, a tapasztalati hiba (empirical risk) pedig $R_{emp}(β) = \frac{1}{n}∥y − Xβ∥^2$
+>     - Az $R_{emp}$ minimalizálásához eloször $y$-t az $X$ oszlopterébe vetítjük
+>         - ez lesz $\overset{ˆ}{y}$.
+>     - Majd $\overset{ˆ}{y}$-ot kifejezzük $X$ oszlopvektorainak lineáris kombinációjaként
+>         - így $\overset{ˆ}{β}$ komponensei lesznek az együttható
+
+### Modellválasztás a lineáris modellek között
+#### Változók kiválasztása a lineáris modellben
+- A modellek között a bennük szereplo változók tesznek különbséget. A cél, hogy megtaláljuk azt a modellt, amelynek legkisebb a várható teszt vesztesége: $R(β) = E((Y − Xβ)^2)$. 
+    - $R(β)$ másik neve: **risk**. A $\overset{ˆ}{β}$ becslést az $R_{emp}(\overset{ˆ}{β}) = \frac{1}{n}∥y − Xβ∥^2$ tapasztalati risk minimalizálásával keressük.
+
+- Minél bővebb a modell, annál kisebb az $R_{emp}\overset{ˆ}{β}$ minimalizált tapasztalati risk.
+    - Vagyis gond, hogy az $R_{emp}\overset{ˆ}{β}$ minimalizált tapasztalati risk alulbecsüli a valós risk értékét.
+
+![](https://usnotes.szerver.cc/uploads/6a10697d-4774-4a1c-9d76-ed9dfe0ba911.png)
+
+- Ha $β^∗$ az együtthatók a tényleges modellben, akkor $$R_{emp}(\overset{ˆ}{β}) ⩽ R_{emp}(β^∗),\ \ \text{miközben}\\ E(R_{emp}(β^∗)) = R(β^∗)$$
+
+- Korrigálni szükséges a tapasztalati risk torzítását (bias). Általában használt módszerek: 
+    - Mallow-féle $C_p$, $AIC$, $BIC$ és a módosított $R^2$.
+    - Az illesztett modelleket a fenti értékek alapján hasonlítjuk össze, és a legkisebb $C_p$, $AIC$ vagy $BIC$ értékű, illetve a legnagyobb módosított $R^2$ értékű modellt választjuk.
+
+
+### A Teszthiba torzítás-bizonytalanság felbontása
+- $Y = f(X) + ε$, ahol $ε$ (fehér) zaj (szórásnégyzete $σ^2$), $\overset{ˆ}{f} ∈ F$ az $f$ becslése az $(x_i; y_1)$, $(i = 1; . . . ; n)$ tanító mintán. (Megj.: $\overset{ˆ}{f}$ véletlenszer˝u, a tanító mintától függ.)
+- A teszthiba várható értéke $x_0$-ban:
+$$E((Y − \overset{ˆ}{f}(X)|X = x_0)^2)= σ^2+ E((f(x_0) − \overset{ˆ}{f}(x_0))^2)=\\
+= σ^2+f(x_0) − E(\overset{ˆ}{f}(x_0)))^2+ D^2(\overset{ˆ}{f}(x_0))$$
+    - Az első tag a zaj elkerülhetetlen bizonytalansága.
+    - A második tag f becslésének négyzetes torzítása (squared bias).
+    - A harmadik tag f becslésének bizonytalansága (szórásnégyzete, varianciája).
+
+- Túl **egyszerű** modell: ($F$ túl szűk halmaz) nem fedi fel az $f$ valós összefüggést (underfitting).
+- Túl **bonyolult** modell: ($F$ túl bő halmaz) leköveti az $ε$ zajt is (overfitting).
+- A legkisebb teszthiba eléréséhez az éppen megfelelő komplexitású modellt kell megtalálni
+- A továbbiak alulparaméterezett ($p < n$, leginkább $p ≪ n$) mintákra vonatkoznak
+![](https://usnotes.szerver.cc/uploads/aba8b650-3d99-41bf-b2d3-6e161967905c.png)
+
+#### Modellválasztás
+- **Mallow-féle:**
+    - Az $(x_i; y_i), i = 1, 2, . . . , n$, adott minta esetén meg lehet becsülni a teszt hibáját, ha minden fontos leíró változó szerepel a modellben.
+        - Ha valamelyik hiányzik, nagy lesz az **RSS** (residual sum of squares).
+        - Egy korrekciós tagot kell alkalmazni, ha a kelleténél több változó szerepel a modellben.
+    - A teszthibát úgy becsüljük, hogy veszünk egy újabb „mérést” $y_i$-re, legyen ez $$y^′_i,\ i = 1, 2, . . . , n$$
+    - Belátható, hogy:
+$$y′−\overset{ˆ}{y}^2 = ∥y−\overset{ˆ}{y}∥^2 +\ 2d\overset{ˆ}{σ}^2$$
+    így a $C_p$ statisztika:
+$$C_p = RSS + 2d\overset{ˆ}{σ}^2$$
+    ahol:
+        - $d$ a modellbe bevont leíró változók száma ($d$ dimenziós lineáris regresszió)
+        - $\overset{ˆ}{σ}^2$ pedig a zaj szórásnégyzetének becslése a legbovebb modellben.
+    - Azt a modellt választjuk, amelyre $C_p$ minimális
+
+- **Akaike információs kritérium – AIC**
+    - Hasonló becslést kapunk a maximum likelihood becslés (MLE) módszerrel. 
+    - A $β$ paraméter becslését a negatív log-likelihood függvény minimalizálásával kapjuk. 
+    - Adódik, hogy Gauss-zaj, azaz $ε ∼ $N(0; σ^2)$ esetén azt a modellt kell választani, amelyre alábbi minimális.
+$$AIC=\frac{1}{n}(RSS+2d\overset{ˆ}{σ}^2)$$
+    - Megjegyzés:  Más úton, de ugyanazt kaptuk, $C_p$ és $AIC$ lényegében ugyanaz, egymás számszorosai, ugyanott van a minimumhelyük
+- **Bayes információs kritérium – BIC**
+    - A Bayes-statisztikai becslés módszerrel némileg más információs kritériumot kapunk. Az adódik, hogyGauss-zaj esetén azt a lineáris modellt kell választani, amelyre alábbi minimális.
+$$BIC=\frac{1}{n}(RSS+d\overset{ˆ}{σ}^2\text{ln n})$$
+    - Megjegyzés: Mivel $\text{ln n} > 2$ bármely $n > 7$ esetén, a $BIC$ statisztika jobban „bünteti” a sok változót használó modelleket, mint $C_p$ (vagy AIC), így általában egyszer˝ubb (alacsonyabb komplexitású) modell választását eredményezi.
+
+- **Módosított $R^2$**
+    - Szintén népszerű eszköz a különbözo mennyiség˝u leíró változót használó modellek közötti választásra a módosított $R^2$ statisztika alapján történo választás. Emlékeztető:
+$$R^2=1-\frac{RSS}{TSS}\text{, ahol }\\
+RSS=\sum_{i=1}^n(y_i-\overset{ˆ}{y}_i)^2\text{ és}\\
+TSS=\sum_{i=1}^n(y_i-\overline{y})^2.$$
+
+- Mivel újabb változók bevonásával $RSS$ mindig csökken, így $R^2$ értéke noni fog. A módosított statisztika:
+$$\text{Módosított}\ R^2 = 1−\frac{RSS}{TSS}·\frac{n − 1}{n − d − 1}$$
+    ahol $d$ a modellbe bevont leíró változók száma.
+    - A $C_p$, $AIC$ és $BIC$ statisztikákkal ellentétben itt azt a modellt kell választani, amelyre a módosított $R^2$ maximális
+
+- **Legjobb részhalmaz választás (best subset selection)**
+    - Ahogy a neve sugallja, a leíró változók legjobban becslő részhalmazát próbálja megtalálni.
+    - Legjobb részhalmaz kiválasztásának algoritmusa
+        - Minden $d = 0, 1, . . . , p$ esetén vegyük az összes lehetséges, $d$ változót használó modellt, $\binom{p}{d}$ ilyen van. 
+            - Válasszuk ezek közül a szokásos módon a legkisebb tanuló hibájút (legkisebb $RSS$ vagy legnagyobb $R^2)
+        - Vizsgáljuk a minden egyes d-re kiválasztott legjobb modellt, $p + 1$ ilyen van.
+            - Számítsuk ki mindegyikre a $C_p, AIC, BIC$, módosított $R^2$ statisztikák valamelyikét.
+        - Válasszuk ki azt a $d$-t, amelynek modellje a legjobban teljesít.
+    - Csak akkor kivitelezhető, ha $p$ nem túl nagy, mivel az illesztendo modellek száma $2$
 
 
 
+- **Lépésenkénti választás (stepwise selection)**
+    - Mohó algoritmusok, amelyek egymásba ágyazott modellsorozatot eredményeznek
+    
+    - Előre haladó kiválasztás (forward stepwise selection):
+        - Induljunk ki a csak konstanst tartalmazó modellbol: $A_0 = \{0\}$.
+        - Minden lépésben vegyük be a modellbe azt a változót, amelyik a legnagyobb változást eredményezi a tanuló hibán: $A_{d+1} = A_d ∪ \{ℓ_d \}$, ahol $ℓ_d \notin A_d$, és amelyre $RSS$ a legkisebb.
+        - Folytassuk, amíg $A_p$-t nem kapjuk (amíg minden változót be nem választottunk).
+    
+    - Visszafelé haladó kiválasztás (backward stepwise selection):
+        - Induljunk ki a teljes modellbol: ˝ Ap = {0; 1; . . . ; p}.
+        - Minden lépésben hagyjuk el a modellbol azt a változót, amelyik a legnagyobb változást eredményezi a tanuló hibán: Ad = Ad+1 \ {ℓd+1}, ahol ℓd+1 ∈ Ad+1 \ {0}, és amelyre RSS a legkisebb.
+        - Folytassuk, amíg $A_0$-t nem kapjuk (amíg a csak konstanst tartalmazó modellhez nem jutunk).
+    - A $p + 1$ elemű $A_0 ⊂ A_1 ⊂ · · · ⊂ A_p$ (egymásba ágyazott) modellsorozat elemei közül válasszunk $C_p, AIC, BIC$ vagy módosított $R^2$ szerint legjobbat
+
+### Zsugor módszerek (shrinkage methods)
+- A változók egyesével kiválasztása helyett lehetséges a null-modelltol (csak tengelymetszet, konstans illesztés) „folytonosan” eljutni a teljes modellig (az összes változót használó lineáris regresszió).
+- A zsugor módszerek egy „bünteto” (regularizáló) tagot adnak a veszteséghez:
+    $$\sum_{i=n}^n(y_i-β_0-\sum_{j=1}^px_{i;j}β_j)^2+λ · J(β_1; β_2; . . . ; β_p)$$
+-  Feltesszük, hogy $\sum_{x=1}^n x_{i;j}=0$ (a leírók centráltak). Ekkor $β_0 =\overline{y}$, és egyszerűbb $y − \overline{y}$-sal dolgozni.
+-  Ahhoz, hogy a regularizáció működjön, a leíró változóknak azonos skálán kell elhelyezkedni, azaz $\frac{1}{n}\sum_{i=n}^n x_{i;j}^2=1$ Minden leíró változó egységnyi szórású lesz, ha standardizáljuk: (x felső basszással van :D)
+$$x=\frac{x_{i;j}}{\sqrt{\frac{1}{n}\sum_{i=n}^n(x_{i;j}-\overline{x}_j)^2}}$$
+- A $λ$ finomhangoló paraméter (tuning parameter), és általában keresztvalidációval határozzuk meg az értékét.
+#### Ridge Regresszió
+- A leíró változók standardizáltak, a célváltozó centrált.
+$J(β) = ∥β∥^2_2 = \sum^p_{j=1} \ β^2_j$, azaz:
+$$\overset{ˆ}{β}_{ridge} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ)^2} + λ ∥β∥^2_2)$$
+ahol $\overset{ˆ}{β}_{ridge}$ a **ridge regresszió** együtthatói.
+- $λ = 0$ a teljes lineáris modellt eredményezi, míg $λ → ∞$ esetén az együtthatók $0$-hoz tartanak.
+- $λ$ növelésével a modell egyre kevésbé rugalmas, a torzítás nő, a bizonytalanság csökken.
+
+#### Lasso Regresszió
+- A leíró változók standardizáltak, a célváltozó centrált.
+$$\overset{ˆ}{β}_{lasso} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ)^2} + λ ∥β∥_1)$$
+ahol $\overset{ˆ}{β}_{lasso}$ a lasso együtthatói.
+- Nincs zárt alakban felírható megoldása
+- $λ = 0$ a teljes lineáris modellt eredményezi
+- míg $λ → ∞$ esetén az együtthatók $0$-vá válnak. (Változókiválasztást eredményez.)
+
+#### Ridge & Lasso Regressziók Összehasonlítása
+![](https://usnotes.szerver.cc/uploads/6b350293-4f5b-4675-928e-7b0f83d9f4b0.png)
+#### Elastic net
+- A ridge és a lasso lineáris kombinációja
+- A leíró változók standardizáltak, a célváltozó centrált.
+- $J(β) = α ∥β∥_2^2+(1 − α) ∥β∥_1 \text{, ahol}\ 0 ⩽ α ⩽ 1,$ azaz
+$$\overset{ˆ}{β}_{elastic net} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ)^2} + λ ∥β∥_2^2+(1-α) ∥β∥_1))$$
+ahol $\overset{ˆ}{β}_{elastic net}$ az elastic net együtthatói.
+    - $α = 0$ a lasso
+    - míg $α = 1$ a ridge regresszióba megy át.
+    - A 2-es norma miatt a minimalizálandó függvény szigorúan konvex, így egyértelmű minimuma van
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- this is shit
+<b>
+    <center>
+        this is shit - we are officially meth-ed up
+    </center>
+    <center>
+        FIN
+    </center>
+</b>
