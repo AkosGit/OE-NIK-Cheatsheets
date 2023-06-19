@@ -1,6 +1,3 @@
----
-tags: itma
----
 Pálosi Ákos, Dézsi Csaba
 > **WARNING: Math is gonna get methy. So be warned, this doc is gonna meth you up real bad, readers be warned!**
 # ITMA jegyzet
@@ -729,8 +726,7 @@ garantálható.)
 - Minél bővebb a modell, annál kisebb az $R_{emp}\overset{ˆ}{β}$ minimalizált tapasztalati risk.
     - Vagyis gond, hogy az $R_{emp}\overset{ˆ}{β}$ minimalizált tapasztalati risk alulbecsüli a valós risk értékét.
 
-![](https://usnotes.szerver.cc/uploads/6a10697d-4774-4a1c-9d76-ed9dfe0ba911.png)
-
+x
 - Ha $β^∗$ az együtthatók a tényleges modellben, akkor $$R_{emp}(\overset{ˆ}{β}) ⩽ R_{emp}(β^∗),\ \ \text{miközben}\\ E(R_{emp}(β^∗)) = R(β^∗)$$
 
 - Korrigálni szükséges a tapasztalati risk torzítását (bias). Általában használt módszerek: 
@@ -821,8 +817,8 @@ $$\text{Módosított}\ R^2 = 1−\frac{RSS}{TSS}·\frac{n − 1}{n − d − 1}$
 - A zsugor módszerek egy „bünteto” (regularizáló) tagot adnak a veszteséghez:
     $$\sum_{i=n}^n(y_i-β_0-\sum_{j=1}^px_{i;j}β_j)^2+λ · J(β_1; β_2; . . . ; β_p)$$
 -  Feltesszük, hogy $\sum_{x=1}^n x_{i;j}=0$ (a leírók centráltak). Ekkor $β_0 =\overline{y}$, és egyszerűbb $y − \overline{y}$-sal dolgozni.
--  Ahhoz, hogy a regularizáció működjön, a leíró változóknak azonos skálán kell elhelyezkedni, azaz $\frac{1}{n}\sum_{i=n}^n x_{i;j}^2=1$ Minden leíró változó egységnyi szórású lesz, ha standardizáljuk: (x felső basszással van :D)
-$$x=\frac{x_{i;j}}{\sqrt{\frac{1}{n}\sum_{i=n}^n(x_{i;j}-\overline{x}_j)^2}}$$
+-  Ahhoz, hogy a regularizáció működjön, a leíró változóknak azonos skálán kell elhelyezkedni, azaz $\frac{1}{n}\sum_{i=n}^n x_{i;j}^2=1$ Minden leíró változó egységnyi szórású lesz, ha standardizáljuk:
+$$\tilde{x}=\frac{x_{i;j}}{\sqrt{\frac{1}{n}\sum_{i=n}^n(x_{i;j}-\overline{x}_j)^2}}$$
 - A $λ$ finomhangoló paraméter (tuning parameter), és általában keresztvalidációval határozzuk meg az értékét.
 #### Ridge Regresszió
 - A leíró változók standardizáltak, a célváltozó centrált.
