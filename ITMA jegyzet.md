@@ -1,3 +1,6 @@
+---
+tags: itma
+---
 Pálosi Ákos, Dézsi Csaba
 > **WARNING: Math is gonna get methy. So be warned, this doc is gonna meth you up real bad, readers be warned!**
 # ITMA jegyzet
@@ -21,16 +24,16 @@ Pálosi Ákos, Dézsi Csaba
 ```M = 1 / B esetén M[i,j] = 1 / B[i,j]```
 ```M = A / B esetén M[i,j] = A[i,j] / B[i,j]```
 - Hasonlóan egyéb műveletek és függvények, általában nem egyeznek meg a matematikai művelettel.
-```M = A ** B esetén M[i,j] = A[i,j] ** B[i,j]```
-```M = exp(A) esetén M[i,j] = exp(A[i,j])```
+```M = A ** B esetén M[i,j] = A[i,j] ** B[i,j]```: $A^B$
+```M = exp(A) esetén M[i,j] = exp(A[i,j])```: $e^A$
 
 
-- Mi van a „rendes” matematikai m˝uveletekkel?
-    - **Szorzás**:
-        - ha ```A.shape == (m,n)``` és ```B.shape == (n,p)```
-        - akkor ```M = A @ B értelmezett```
-        - ```M.shape == (m,p)``` és ```M[i,j] = (A[i,:] * B[:,j]).sum()```
+- Mi van a „rendes” matematikai müveletekkel?
+    - **Szorzás (dot product)**:
+        - ha ```A.shape == (m,n)``` és ```B.shape == (n,p)``` akkor ```M = A @ B értelmezett```, ```M.shape == (m,p)``` és ```M[i,j] = (A[i,:] * B[:,j]).sum()```
         - ```M = A.dot(B)``` vagy ```M = A @ B```
+        - ![](https://usnotes.szerver.cc/uploads/9d3a976a-5d46-4467-87dd-403515898083.png)
+
     - **Inverz** (költséges számítás).
         - ```M = np.linalg.inv(A)```
 
@@ -81,6 +84,15 @@ Pálosi Ákos, Dézsi Csaba
     
 - Tehát ha 2 mátrix csak abban térnek el hogy az egyikben egyes dimenzióknál '1'-es szám van akkor a kettő összeadható
 ![](https://usnotes.szerver.cc/uploads/9e422fcb-3b5e-4ff4-81f6-d835446cf537.png)
+- Adott egy $A$ mátrix, ```A.shape = (3,2,1)```:
+    - Melyikkel és hogyan működik a broadcasting? 
+    ```python=
+    a.shape=(1,2,3)
+    b.shape=(3,2)
+    c.shape=(2,2)
+    ```
+    ![](https://usnotes.szerver.cc/uploads/79ab60b5-3562-4d7d-b9a4-591bfb977f80.png)
+
 
 
 ## NORMA
@@ -102,7 +114,7 @@ Pálosi Ákos, Dézsi Csaba
         - Ha vekorokat összeadjuk és utána vesszük a hosszát az kissebb egyenlő azzal hogy előszőr mindkét vektor hosszát vesszük és utána adjuk őket össze
  
 ![](https://usnotes.szerver.cc/uploads/a702794c-febf-4dee-be79-291f34a4d43b.png)
-
+- Példa:![](https://usnotes.szerver.cc/uploads/7676fa81-9d8c-477d-a50c-97275963f5cf.png)
 ## METRIKA
 - Általánosított távolság.
 - Két vektor távolsága
@@ -192,6 +204,8 @@ mátrixa áll hátrébb a szorzatban
 ~~Tranformationceptioooon~~
 
 ## KÉP ÉS MAGTÉR
+> - megjegyzés: 
+> egy $R^{4x20}$ as transzformációs mátrix esetében a 20 dimenziós vektorokat **legfeljebb** 4 dimenzióva képezzük
 ### Képtér
 >  **DEF**:
 > - $φ: V → V$ lineáris transzformáció
@@ -289,6 +303,8 @@ $$s_1·s_2 = \begin{bmatrix}2\\1\end{bmatrix} · \begin{bmatrix}1\\-2\end{bmatri
 
 ## Szinguláris érték, szinguláris vektorok
 - szingulársi érték jele: $σ_i$
+- szinguláris értékek a sajátértékek gyökei
+    - $σ_i=\sqrt{\lambda_i}$
 **DEF**:
 > - A pozitív $σ_1 ⩾ σ_2 ⩾ · · · ⩾ σ_r > 0$ számok az $r$-rangú valós $A$ mátrix szinguláris értékei:
 >     - ha a **sortér**nek van olyan $(v_1; v_2; . . . ; v_r)$ **ortonormált bázisa**
@@ -329,8 +345,30 @@ $$U = \begin{bmatrix}U_1\\U_2\end{bmatrix} =
 
 
 ### Szinguláris érték felbontás (SVD)
-- Az A mátrix szinguláris érték (szerinti) felbontása (SVD, singular value decomposition)
+- Olyan $V$-ket keresünk, hogy $σ_j$ * $u_i$ számszoros ($i=\{1,2...n\}$)
+- Használatai:
+    - Forgatás, tükrözés, nagyítás, kicsinyítés
+    - Image Compression - kicsinyítés:
+        -  [Geeks4geeks Application of SVD - python implementációval együtt](https://www.geeksforgeeks.org/singular-value-decomposition-svd/)
+            -  "*<sup>In this code, we will try to calculate the **Singular value decomposition** using **Numpy and Scipy**.  We will be **calculating SVD**, and also performing **pseudo-inverse**. In the end, **we can apply SVD for compressing the image**</sup>*"
+            ![](https://usnotes.szerver.cc/uploads/16e45c36-e9be-440b-8cdb-beab89564f68.png)
+    - Adatbányászatban is használt - **Dimension Reduction**:
+        - [SVD magyarázó moodle-ből](https://elearning.uni-obuda.hu/main/pluginfile.php/1132265/mod_resource/content/1/dim%20reduction%20with%20SVD.pdf)
+        - Why should we reduce dimensions:
+            - Discover hidden correlations/topics
+            - Words that occur commonly together
+            - Remove redundant and noisy features -> not all words are useful
+            - Interpretation and visualization
+            - Easier storage and processing of the data
+
+
+- Az $A$ mátrix szinguláris érték (szerinti) felbontása (SVD, singular value decomposition)
 $$A = U Σ V^T$$
+    - $A$: bemeneti mátrix $m×n$ pl (m dokumentumok n kifejezések) 
+    - $U$: Bal szinguláris vektorok => $m×r$ matrix pl (m dokumentumok, r concepciók)
+    - $\sum$: szinguláris értékek => $r×r$ mátrix errőssége egyes koncepcióknak ahol az r a mátrix rangja
+    - $V$: jobb szinguláris vektorok => $n×r$ pl (n kifejezések, r koncepciók)
+
 - **redukált** szinguláris érték (szerinti) felbontása pedig
 $$A = U_1 Σ_1 V^T$$
 
@@ -344,10 +382,11 @@ $$A = U_1 Σ_1 V^T$$
         - 4.2 Másik lehetoség: a bal szinguláris vektorok **megegyeznek** az $AA^T$ **sajátvektoraival**.
 - 5. A szinguláris vektorokból felírható $V_1$ és $U_1$, a **redukált szinguláris** felbontás.
 - 6. A $V$-hez és az $U$-hoz ki kell egészíteni $V_1$-et és $U_1$-et ortonormált bázissá.
+- Példa sajátérték és sajátvektor számitásra
+    - ![](https://usnotes.szerver.cc/uploads/14d046fe-8f45-45a7-8b73-aa4c2bfb5879.png)
 
 - Levezetett feladatmegoldás SVD:
     - [BME-s SVD megoldás példafeladatokkal, magyarázatokkal](http://sandbox.hlt.bme.hu/~gaebor/ea_anyag/FelsobbMat/SVD.pdf)
-    - [SVD magyarázó moodleából](https://elearning.uni-obuda.hu/main/pluginfile.php/1132265/mod_resource/content/1/dim%20reduction%20with%20SVD.pdf)
 
 - Példa feladat levezetéssel:
 >
@@ -366,13 +405,14 @@ $$A = U_1 Σ_1 V^T$$
 
 ### SVD HATÁSA
 - Legyen $A$ egy r-rangú, $m × n$-es valós mátrix.
-- Az $x → Ax$ leképezés az Rn tér $e^Te$ = $1$ egyenletet kielégítő egységgömb felületén lévo pontjait az $R^m$ tér egy $r$-dimenziós alterének...
+- Az $x → Ax$ leképezés az $R_n$ tér $e^Te$ = $1$ egyenletet kielégítő egységgömb felületén lévo pontjait az $R^m$ tér egy $r$-dimenziós alterének...
     - egy **ellipszoidjának felületére** képezi, ha $r = n$
     - egy **ellipszoidja által határolt** tartományára képezi, ha $r < n$
 
 
 ## OPTIMALIZÁLÁS
 ### Mátrixok definitsége
+[Mátrix definitség fogalma & megoldási módszerek leírása](https://www.uni-miskolc.hu/~matente/oktatasi%20tananyagok/MÁTRIX%20DEFINITSÉGÉNEK%20FOGALMA%20ÉS%20TESZTEK%20A%20DEFINITSÉG%20ELDÖNTÉSÉRE.pdf)
 - $x^T$ az x mátrix transzponáltját jelenti
 - Az $A ∈ R^{n×n}$ mátrix **pozitív definit**, ha
 $$x^T Ax > 0,$$ $$[x^T Ax < 0],$$ $$(x ∈ R^n, ∀x \neq 0)$$
@@ -401,18 +441,34 @@ $$x^T Ax ⩾ 0,$$ $$[x^T Ax ⩽ 0],$$ $$(∀x ∈ R^n)$$
 >         - az $U$ mátrix minden diagonális eleme pozitív
 >         - **diagonális elem:** a főátlón található elemek
 >         - A háromszögmátrix olyan négyzetes mátrix, melynek a főátlója alatti összes elem vagy a főátlója feletti összes elem zéró.
-         
-- **Pozitív definit magyarúl:** a felső $U$ háromszögmátrixba bele kell venni a főátló elemit és csak ezeknek az elemeknek kell pozitívnak lenniük. Ezek alapján a lenti mátrix eleget a definíciónak
+
+- Megoldási módok (lásd fentebb a linket részletes levezetésért):
+    - Gauss-módszeres megoldás:
+        - Gauss-módzserrel előállítjuk az alsó háromszög mátrixunkat ezzel együtt kijön az $U$
+        - **Pozitív definit:** a felső $U$ háromszögmátrixba bele kell venni a főátló elemit és csak ezeknek az elemeknek kell pozitívnak lenniük. Ezek alapján a lenti mátrix eleget tesz a definíciónak
     $$U = \begin{bmatrix}
     \color{red}{4} & -2 & 2 \\
     0 & \color{red}{4.5} & -3 \\
     0 & 0 & \color{red}{1.6}
     \end{bmatrix}$$
+    
+        - **Negatív definit:** Ha $A$ mátrix $-1$-szeresét vesszük, és a főátló elemei mind pozitívak, akkor  az $A$ mátrix
 
+    - Főminor megoldási mód:
+    ![](https://usnotes.szerver.cc/uploads/d7a6105a-0520-4883-b996-84f7e7545d92.png)
 
 
 ## Többváltozós deriváltak
-- ∇: ez a szar a 'Nebla', jelentése ismeretlen :D, a vadonban, matematikai és fizikai papírokban viszonylag gyakran előfordul a gradiens vektorok témakörében
+- Több változós deriváltnál azokat a változókat amikkel nem derviálunk konstansnak vesszük, pl ha  xés y változónk van és x-szerint kell deriválni akkor y-t konstnansnak kell kezelni
+    - ha csak egy változó alapján deriválunk az elsőrendü parciális deriválásnak hivjuk
+$$\text{x szerint: }\frac{\partial \:}{\partial \:x}\left(x^2+2y\right)=2x$$ 
+$$\text{y szerint: }\frac{\partial \:}{\partial \:y}\left(x^2+2y\right)=2$$
+- Kétszeresen deriválunk azt másodrendü parciális deriválásnak nevezzük
+    - PL $f'_{xy}$ vagyis elöször x aztán y szerint deriválunk akkor 
+        - $\frac{\partial }{\partial \:x}\left(x^2+3yx\right)=2x+3y\\ \frac{\partial \:}{\partial \:y}\left(2x+3y\right)=3$
+        1. elöször x szerint: y-t számnak vagyis konstansnak vesszük és lederiválunk
+        2. y szerint: az elözö deriválás eredményét lederiváljuk úgy hogy az x-eket konstansnak vesszük 
+- ∇: ez a szar a '**Nebla**', jelentése ismeretlen :D, a vadonban, matematikai és fizikai papírokban viszonylag gyakran előfordul a gradiens vektorok témakörében
 - Az $f : R^n → R$, $n$-változós valós függvény **gradiense** (graidensvektora)
 $$∇f(x) =
 \begin{bmatrix}
@@ -430,6 +486,8 @@ f\:'_{xx}\left(P_0\right)&f\:'_{xy}\left(P_0\right)\\ f\:'_{yx}\left(P_0\right)&
 
 
 ### Gradiensmátrix:
+
+- 1-m változót szerint derivál le és egymás mellé rakja az eredménynt??????? EVEEEEELINNNN
 $$F : R^n → R^m \\
 F(x) = [F_1(x) ; . . . ; F_m(x)],\\
 F_i : R^n → R$$ 
@@ -465,13 +523,28 @@ $$f(x)=\sum_{k=0}^\infty f^{(k)}(a)\frac{(x-a)^k}{k!}$$
 ##### Abszolút szélsőértékhely
 - Az $f : R^n → R \ \ \ (n ⩾ 1)$ függvény abszolút (globális) minimumhelye [maximumhelye] az $x^∗ ∈ D(f)$ pont, ha
 $$f(x^∗) ⩽ f(x)\ \ \ [f(x^∗) ⩾ f(x)]\ \ \ ∀x ∈ D(f).$$
-
+- **Magyarúl**
+    - $x^*$: abszolút minimum vagy maximumhely jelölése
+    - $D(x)$: Értelmezési tartomány
+    - $x^*$ minimumhely ha: f(x^∗) ⩽ f(x)
+    - $x^*$ maximumhely ha: (x^∗) ⩾ f(x)
 ##### Gömbi környezet
-- Az $S(x^∗; δ) = {x ∈ R^n| \ ∥x − x^∗∥ \ < δ}⊂R^n$ halmaz az $x^∗ ∈ R^n$ pont δ sugarú (δ > 0) nyílt (gömbi)
-környezete
-
+- Az $S(x^∗; δ) = {x ∈ R^n| \ ∥x − x^∗∥ \ < δ}⊂R^n$ halmaz az $x^∗ ∈ R^n$ pont δ sugarú (δ > 0) nyílt (gömbi) környezete
+- remélhetőleg erről a környezetröl van szó
+- Az $S(x^∗; δ)$ az $x^∗$ pont $δ$ sugarú környezetét jelenti. Ez azt jelenti, hogy az összes olyan pontot tartalmazza, amelyek távolsága az $x^∗$ ponttól kisebb, mint $δ$. Más szóval, ez az összes olyan pont halmaza, amelyek a következő feltételnek megfelelnek: $\|x - x^∗\| < δ$, ahol $\| \cdot \|$ az euklideszi távolságot jelenti.
 ##### Lokális szélsőértékhely
-- Az $f : R^n → R$ (n ⩾ 1) függvény lokális **minimum [maximum]helye** az $x^∗ ∈ D(f)$ pont, ha létezik $δ > 0, hogy
+```
+
+f(x)
+  |          .-.
+  |       .-´   `-.
+  |    .-´         `-.
+  | .-´               `-.
+--´----------------------`--> x
+   x* - δ   x*   x* + δ
+
+```
+- Az $f : R^n → R$ (n ⩾ 1) függvény lokális **minimum [maximum]helye** az $x^∗ ∈ D(f)$ pont, ha létezik $δ > 0$, hogy
 $$f(x^∗) ⩽ f(x)\\ [f(x^∗) ⩾ f(x)]\\ ∀x ∈ D(f) \ ∩ \ S(x^∗; δ).$$
 
 ##### Erős/szigorú szélsőértékhely
@@ -486,17 +559,25 @@ $$f(x^∗) < f(x), \\ [f(x^∗) > f(x)] \\ ∀x ∈ D(f) ∩ S(x^∗; δ), x \ne
 
 ---
 #### Egyváltozós
-##### Elsorendü szükséges feltétel 
+##### Elsorendü szükséges feltétel (szélsoértéke van)
 - Ha $f : R → R$ függvénynek $x^∗$ pontban szélsoértéke van, és f folytonosan differenciálható $x^∗$ pontban, akkor $f′(x^∗) = 0$.
 
-##### Másodrendű szükséges feltétel
-- Ha $f : R → R$ függvénynek $x^∗$ pontban minimuma [maximuma] van, és $f$ kétszer folytonosan differenciálható $x^∗$ pontban, akkor $$f′(x^∗) = 0\\ és \\f′′(x^∗) ⩾ 0 [f′′(x^∗) ⩽ 0]$$
+##### Másodrendű szükséges feltétel (minimuma [maximuma] van)
+- Ha $f : R → R$ függvénynek $x^∗$ pontban minimuma [maximuma] van, és $f$ kétszer folytonosan differenciálható $x^∗$ pontban, akkor $$f′(x^∗) = 0\\ és \\f′′(x^∗) ⩾ 0 \ \text{vagy}\ [f′′(x^∗) ⩽ 0]$$
 
 ##### Másodrendű elégséges feltétel
 - Ha $f : R → R$ függvény kétszer folytonosan differenciálható $x^∗$ pontban, $f′(x^∗) = 0 \  \text{és} \ f′′(x^∗) > 0 [f′(x^∗) < 0]$, akkor $x^∗$ az f függvény minimumhelye [maximumhelye].
 
 ---
 #### **Többváltozós**
+## Stacionárius pont
+- Elöször meghatározzuk a szélsöértékeket és ha ezeket behelyetesitve x és y alapján derivált függvényekbe és 0-t kapunk az a szélsőérték egy stacionárius pont is
+- Lépések:
+    1. x és y alapján lederiváljuk a fügvénynt
+    2. Szélsőértékek meghatározása ($P_0$ pontok): A deriválás eredményéül kapott fügvényeket egyenlővé tesszük 0-val vagyis megnézzük hogy milyen értéket kell hogy x és y felvegyen hogy behelyetesités után 0-t kapjunk => f(x,y)=0 akkor $P_0(x,y)$
+    3. Ha egy szélsőérték x,y által derivált fügvénynél is jelen van az a szélsőérték egy stacionárius pont
+    ![](https://usnotes.szerver.cc/uploads/8aa07c80-810c-4186-8a9e-116be1d7cc0c.png)
+ 
 ##### Elsőrendű szükséges feltétel
 - Ha $f : R^n → R$ függvénynek $x^∗$ pontban szélsőértéke van, és $f$ folytonosan differenciálható $x^∗$ pontban, akkor: $∇f(x^∗) = 0$
 
@@ -530,6 +611,17 @@ $$f(x^∗) < f(x), \\ [f(x^∗) > f(x)] \\ ∀x ∈ D(f) ∩ S(x^∗; δ), x \ne
 
 
 ## NUMERIKUS MINIMUMKERESŐ ELJÁRÁSOK
+- [Numerical Optimization Techniques - Princeton](https://www.cs.princeton.edu/courses/archive/spring10/cos424/slides/6-opt.pdf) Boncolgatott témák:
+    - Line search
+    - Coordinate-Gradient-Steepest Descent
+    - Hessian matrix
+    - Newton method
+    - Conjugate Gradient algorithm
+    - Stochastic Gradient Descent
+- Prog1-ben tanult Logaritmikus kereséshez hasonló módszerek. Legalábbis felfogás szempontjából:
+    - folyamatosan egyre jobban közelítjük a megoldást
+        - vagy az intervallumok szűkítésével
+        - vagy a fv tulajdonságait kihasználva egyéb matematikai megoldásokkal
 ### Egyváltozós függvények numerikus minimumkereső eljárásai
 #### Direkt és indirekt kereső eljárások
 - **Direkt** kereso eljárások:
@@ -617,6 +709,8 @@ relációláncot úgy, hogy minden egyes $[a_k ; b_k ]$ intervallum tartalmazza 
 - Az aranymetszo eljárást alkalmazzák nem-unimodális függvényre is, de ebben az esetben a konvergencia nem garantálható
 
 #### Newton-módszer (Newton–Raphson-módszer; érintő módszer)
+- Előnye: Gyors
+- Hátránya: Ki kell számolni a másofik deriváltat és ennek nehéz a kiszámítása, ha nem ismerjük a képletét
 - Analízis I. ismétlés. Az $f(x) = 0$ egyenlet gyökközelíto sorozata:
 $$x_{n+1} = x_n −\frac{f(x_n)}{f'(x_n)}.$$
 - Ha az $f$ szélsoértékhelyét keressük, akkor az $f′(x) = 0$ stacionárius egyenlet gyökközelíto sorozata:
@@ -827,6 +921,7 @@ $$\overset{ˆ}{β}_{ridge} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ
 ahol $\overset{ˆ}{β}_{ridge}$ a **ridge regresszió** együtthatói.
 - $λ = 0$ a teljes lineáris modellt eredményezi, míg $λ → ∞$ esetén az együtthatók $0$-hoz tartanak.
 - $λ$ növelésével a modell egyre kevésbé rugalmas, a torzítás nő, a bizonytalanság csökken.
+- **NEM** eredményezi leíró változók tényleges kiválasztásását 
 
 #### Lasso Regresszió
 - A leíró változók standardizáltak, a célváltozó centrált.
@@ -834,12 +929,14 @@ $$\overset{ˆ}{β}_{lasso} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ
 ahol $\overset{ˆ}{β}_{lasso}$ a lasso együtthatói.
 - Nincs zárt alakban felírható megoldása
 - $λ = 0$ a teljes lineáris modellt eredményezi
-- míg $λ → ∞$ esetén az együtthatók $0$-vá válnak. (Változókiválasztást eredményez.)
+- míg $λ → ∞$ esetén az együtthatók $0$-vá válnak. 
+- Leíró változók tényleges kiválasztásását eredményezi
 
 #### Ridge & Lasso Regressziók Összehasonlítása
 ![](https://usnotes.szerver.cc/uploads/6b350293-4f5b-4675-928e-7b0f83d9f4b0.png)
 #### Elastic net
 - A ridge és a lasso lineáris kombinációja
+    - **NEM** eredményezi leíró változók tényleges kiválasztásását 
 - A leíró változók standardizáltak, a célváltozó centrált.
 - $J(β) = α ∥β∥_2^2+(1 − α) ∥β∥_1 \text{, ahol}\ 0 ⩽ α ⩽ 1,$ azaz
 $$\overset{ˆ}{β}_{elastic net} = arg\ \underset{β}{min}(\sum^n_{i=1}{(y_i − x_iβ)^2} + λ ∥β∥_2^2+(1-α) ∥β∥_1))$$
@@ -857,3 +954,92 @@ ahol $\overset{ˆ}{β}_{elastic net}$ az elastic net együtthatói.
         FIN
     </center>
 </b>
+
+
+
+## FELADATTÍPUSOK / MEGOLDÁSOK    
+- 2.![](https://usnotes.szerver.cc/uploads/36ed70e4-ad87-4285-b9c7-df4292863f9a.png)
+    - Bázisvektorokon kiszámítjuk a képet és azt berakjuk oszlopokban
+    - 20d ből képzünk 4-be ($R^{20x4}$)
+        - másik térben 4 komponensű oszlopvektorok és ezeket belerakjuk egy mátrixba
+        - 4x20-as lesz az eredmény
+        - 
+- 3.![](https://usnotes.szerver.cc/uploads/8ffe4256-1467-4115-872c-a6886623ba7e.png)
+    - gradiens vektor $0$ vektor, azaz vízszintes az érintő síkja
+    - kell
+- Shrinkage-módzserek melyik normát hasznáják? ($∥β∥_2,\text{vagy} ∥β∥_1$) ![](https://usnotes.szerver.cc/uploads/35c672ad-773e-45ed-a40d-5159e3e75721.png)
+    - Ridge: 2-es norma
+    - Lasso: 1-es norma
+    - Elastic: mindkettő
+- Vonalmenti minumumkereső eljárások - Gradiens módszer
+    - ![](https://usnotes.szerver.cc/uploads/4ff25624-a5dd-4c2e-8c9f-f89228f99cea.png)
+    - ![](https://usnotes.szerver.cc/uploads/fb57f83f-b203-418d-b6c9-2daa458c6566.png)
+    - Megoldás : $A$, mert 1,1-hez hozzádtuk a $[-0,1;-0,2]$ vektort
+
+- Képtér
+    - ![](https://usnotes.szerver.cc/uploads/9766b660-dce9-4d8c-9253-d6427a79fc06.png)
+    - ![](https://usnotes.szerver.cc/uploads/41f76632-8b60-4362-a661-2d9b20d70751.png) 
+
+- Mi lehet norma
+    - ![](https://usnotes.szerver.cc/uploads/01b68ba0-146b-482a-bc26-bb84aa50521f.png)
+    - ![](https://usnotes.szerver.cc/uploads/06ab0d74-915d-48a2-8714-1b5ab766a9d1.png)
+
+- Broadcasting
+    - ![](https://usnotes.szerver.cc/uploads/84b72307-66a0-42f4-a4cc-6b4d824f4cd6.png)
+    - ![](https://usnotes.szerver.cc/uploads/60a2e05d-0f0c-48ef-8c4e-8eb6931d62f0.png)
+
+- SVD dimenzió
+    - ![](https://usnotes.szerver.cc/uploads/11337d43-0b64-43e3-96d9-5a02ce4ab3fb.png)
+    - ![](https://usnotes.szerver.cc/uploads/35c750e2-7212-471e-ace8-88874db334d9.png)
+
+- Mátrix definitség
+    - ![](https://usnotes.szerver.cc/uploads/8b6df4fb-7174-4d0e-98ff-6fe0704d4c6f.png)
+    - ![](https://usnotes.szerver.cc/uploads/0fe3eb39-15f5-4408-8074-ed67205ba09d.png)
+
+- Norma számolás:
+    - ![](https://usnotes.szerver.cc/uploads/aa9797fe-afce-46fd-970d-471734688fff.png)
+    - ![](https://usnotes.szerver.cc/uploads/7676fa81-9d8c-477d-a50c-97275963f5cf.png)
+    - [Lásd Norma](#NORMA)
+- sajátérték és sajátvektor számitásra
+    - ![](https://usnotes.szerver.cc/uploads/7b77c444-3f62-4b96-8c82-a9c6ba1c0721.png)
+    - ![](https://usnotes.szerver.cc/uploads/14d046fe-8f45-45a7-8b73-aa4c2bfb5879.png)
+
+- stacionárius pont meghatározása
+    - ![](https://usnotes.szerver.cc/uploads/6254f6a2-0c7a-4039-b1ca-fae5b30cd520.png)
+    - ![](https://usnotes.szerver.cc/uploads/8aa07c80-810c-4186-8a9e-116be1d7cc0c.png)
+
+- Mi kell newtonhoz?
+    - ![](https://usnotes.szerver.cc/uploads/e9ad2144-eb3e-4538-ad8d-a15a18cf15a9.png)
+    - ![](https://usnotes.szerver.cc/uploads/3d0f16a5-72cc-4976-bac9-f44f27ff7bb3.png)
+
+- Newton lépés
+    -![](https://usnotes.szerver.cc/uploads/134082b5-6ab4-4d04-98fb-62e6d905abae.png)
+     - [Lásd Teszthiba](#A-Teszthiba-torz%C3%ADt%C3%A1s-bizonytalans%C3%A1g-felbont%C3%A1sa)
+
+- dot product
+    - ![](https://usnotes.szerver.cc/uploads/b685a237-3246-45f1-836e-63a048512b70.png)
+    - ![](https://usnotes.szerver.cc/uploads/ef10aeff-6337-4394-99c9-2843ee4383f7.png)
+    - [Lásd alapok](#1-alapfogalmak-%C3%A9s-m%C5%B1veletek)
+- SVD sajátérték
+    - ![](https://usnotes.szerver.cc/uploads/2c9a73d9-16ab-47f1-ad89-2a21a8321cb9.png)
+        - ![](https://usnotes.szerver.cc/uploads/0d4b80fa-98cb-45fe-99a0-a1392977b26d.png)
+    - ![](https://usnotes.szerver.cc/uploads/787c4c43-cc56-495b-98ea-2a00b84f7a4f.png)
+        - A szinguláris értékek a mátrix sajátértékeinek pozitív négyzetgyökei 
+    - ![](https://usnotes.szerver.cc/uploads/3ff1fd62-0d97-49dd-93d2-ccc77301a96b.png)
+
+- Mallow: Ez a megoldás kérdéses
+    - ![](https://usnotes.szerver.cc/uploads/82304b41-ac90-4b33-b21a-140024758c46.png)
+    - ![](https://usnotes.szerver.cc/uploads/686599ae-bcbc-46dd-a4d3-a9c70a31d70e.png)
+    - [Lásd Teszthiba](#A-Teszthiba-torz%C3%ADt%C3%A1s-bizonytalans%C3%A1g-felbont%C3%A1sa)
+- Ridge vagy lasso eredmény
+    - ![](https://usnotes.szerver.cc/uploads/3b684198-56b9-4eac-9f09-f24b121d84b8.png)
+    - A lasso a válasz mert a ridge regresszió nem eredményez leiró változók tényleges szelekcióját. A ridge regresszió célja, hogy csökkentse az együtthatók nagyságát, de nem teszi őket pontosan nullává. Ez azt jelenti, hogy a ridge regresszió nem választja ki a változókat, hanem csak csökkenti azok hatását a modellben
+    - [Lásd Zsugór módszerek](#Zsugor-m%C3%B3dszerek-shrinkage-methods)
+
+- Metrika
+    - ![](https://usnotes.szerver.cc/uploads/be8e9292-dc6d-402f-8f9d-569cde224ed8.png)
+    - A skálázhatóság nem jellemző tulajdonsága az általános metrikának, negaativ nem lehet a gyök miatt a másik kettő meg tulajdonsága [Lásd Metrika](#METRIKA)
+
+- Komplex modellek
+    - ![](https://usnotes.szerver.cc/uploads/2e1bbde8-b762-4238-a239-100a4a315acb.png)
+    - [Lásd Teszhiba](#A-Teszthiba-torz%C3%ADt%C3%A1s-bizonytalans%C3%A1g-felbont%C3%A1sa)
