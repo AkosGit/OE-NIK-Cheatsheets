@@ -1,0 +1,53 @@
+## Körmozgás
+- $\phi$ ez irja le a körmozgást  
+- r=állandó
+- 
+- Egyenletes körmozgás
+	- 1 sec alatt ugyan annyit fordul el
+	- ![](attachment/8640a190d80976e23d65f7436fa4bb26.png)
+	- ![](attachment/745489e75a4dbdc3845ce54ac104cc2a.png)
+	- ![](attachment/6ba9c79d2e741421cc8e4edb393d70e8.png)
+	- ![](attachment/db904b02162fca840e56c4b937102e1a.png)
+	- ![](attachment/5b7a639be91be085cf54731bfc05b939.png)
+- Nem egyenletes körmozgás
+	- ![](attachment/fe99fb177b691ac6ab95f463b1ae905c.png)
+	- ![](attachment/907271b299b34cda03b2bbb4422e37d8.png)
+	- ![](attachment/83164c41ddbc9315243c154f1babc50b.png)
+	- ![](attachment/6998a71b885b79b9bbb4719df3001fd3.png)
+## Dinamika(erők)
+- fizikai axiómák: megfigyeléseken nyugszanak(kisérleti tények) idő folyamán változnak
+#### Newton axiómák:
+- nagysebességeknél nem érvényes (relativitás)
+- kis atomi részecskéknél quantum mechanika
+-  hétköznapi életet nagyon jól modellezi
+- 1. tehetetlenség törvénye
+	- **léteznek inercia rendszerek**,melyekben  minden test megőrzi mozgásállapotát amig valamilyen **erő** azt meg nem változtatja
+	- mozgás állapotát a sebesség vektor változtatja
+	- mi nem inercia rendszer?
+		- tárgy mozog rá ható erő nélkül
+		- pl.: mozgó vonatban tárgy mozog
+	- ha tálálunk egy inercia rendszert akkor végtelen is van
+- 2. mozgás egyenlet
+	- def: impulzus,lendület(p)
+		- tömeg\*sebesség $m\times\vector{v}$  kg m/s
+		- p=impulzus vektor    
+		- ![](attachment/83a322457bed8da5bdc855da7b782984.png)
+		- ![](attachment/87f162c03671c91523f19b79d6d98d24.png)
+		- ha a dm/dt=0 akkor m állandó 
+		- ha hat a testre egy erő akkor a lendülete változni fog
+		- ![](attachment/05d21ab1261a782c940e0f4916ae92af.png)
+		- m=tehetetlen tömeg
+		- ![](attachment/0ec67275f03c04a87bf735fdcafeee9a.png)
+		- ![](attachment/ed63f22502283da6c1cee979873b8e1f.png)
+		- ![](attachment/67bb576c7019c387733d078d176ee019.png)
+	- 3. hatás elenhatás
+		- ![](attachment/f09694d9484a528b8f38cb38ace4cb89.png)
+		- az egyik erő az egyik testre hat, a másik a másik testre
+		- fontos hogy melyik erő melyik testre hat
+		- ![](attachment/217e5f9487656c4d1ed4ab10a4ec9c0f.png)
+		- m zuhan a föld felé de föld nem zuhan a kis m félé
+			- ![](attachment/04293ac8df178b28b77e130903e722da.png)
+	- 4. szuperpozició elve
+		- ha több erő hat a testre, több gyorsulást össze lehet adni
+			- ![](attachment/94fc872a6f0408a58f289e2d79814507.png)
+			- ![](attachment/83045714bb6f0d0022dfd12095fcccb2.png)

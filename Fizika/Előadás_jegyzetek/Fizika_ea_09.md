@@ -1,0 +1,3 @@
+- Ha gáznak nagy a hőmérséklete nagy az energiája
+- melegedés látens hő(forma változás)
+	- ![](attachment/32766581103c98c1edf22d8e471a9d15.png)

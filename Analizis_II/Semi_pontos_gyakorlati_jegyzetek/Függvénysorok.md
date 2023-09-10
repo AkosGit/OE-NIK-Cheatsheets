@@ -1,0 +1,23 @@
+# Függvény sorok
+- ![](attachment/3c556044d04f8a54724af2dfa56689b9.png)
+- konvergenciatartomány és összegfügvény
+	- Konvergencia tarományt megkapjuk ha mértani a sorozat akkor $-1<q<1$ szabállyal
+		- Ezt a két szabályt szét kell szedni és az egyet közös nevezöre kell hozni a 
+	- Összegfügvény: vagy mértani összeg vagy szétválasztás ha semelyik akkor a derivált lesz mértani összeg
+	- ![](attachment/3d5018b60c9fe540efa8738b81c3fcfe.png)
+		- $\frac{\frac{x}{x-1}}{1-\frac{x}{x-1}}=\frac{x}{\left(x-1\right)\left(1-\frac{x}{x-1}\right)}=\frac{x}{\left(x-1\right)\left(-\frac{1}{x-1}\right)}$   
+	- ![](attachment/26678316430fd800c162e8074d63a8c1.png)
+	- ![](attachment/3728b808d0d34e456b9d560a524dac0c.png)
+	- ![](attachment/dc0256f87b95fe373b4f5859b0d6c51e.png)
+- igazolja hogy
+	- ![](attachment/cdb663e4d2836e7142cd07ddf608ea9c.png)
+- összegfügvény
+	- ![](attachment/2d33b87cb70c84b5c4b2d9ea3872f0eb.png)
+	- ![](attachment/fcc5168e08b28c1d07bbcf69bfc55ca4.png)
+	- ![](attachment/17e133e5c61eff867c1767789fb8dbb3.png)
+	- ![](attachment/a002802b485f97119e56384f5c46790e.png)
+	- ![](attachment/32e2ab334d9cf26f8b52bc695ee0111e.png)
+	- ![](attachment/2b91fa2de64246f7deea933d6e35038b.png)
+	- ![](attachment/425e74008e7da60f80371e14c133cce4.png)
+	- ![](attachment/6975b2719b65b002b3d118f13653d863.png)
+  

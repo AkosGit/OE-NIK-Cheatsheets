@@ -1,0 +1,48 @@
+## Pillanatnyi gyorsulás
+- sebesség megváltozása egységnyi idő alatt
+- mértékegysége: $\frac{m}{s^2}$
+- dimenzió: $\frac{L}{T^2}$
+- ![](attachment/a42d893434b78b63a9dbbbe1e4cfd143.png)
+- jellemzése (sebesség idő grafikon)
+	- ![](attachment/a3912b9d5054e6b2e4f3af25156a4542.png)
+- példa
+	- ![](attachment/280e56a3156e53dbcbe28a59a214cd5f.png)
+	- ![](attachment/35074d4e5a16fa397786f5a1f141fcc0.png)
+	- gyorsulás 2sec-nél
+		- ![](attachment/f6f159dc055e9f22d5c3b434263ea276.png)
+		- a konstansoknak mértékegységekkel kell rendelkezniük
+			- ![](attachment/df668098581bff7ef397226c05b6444c.png)
+## Speciális eset
+- egyenes vonalú egyenletes mozgás
+	- pálya egyenes
+	- ![](attachment/5f26ca7ba2bcd071cacbe1e9a337dc48.png)
+	- ![](attachment/7466fe397420da7747f0c1afe48f6894.png)
+ - Egyenes vonalú(pálya egyenes) egyenletesen változó mozgás
+	 - egyenletesen változó -> v!= állandó a!=állandó
+	 - a: gyorsulás, v:sebesség
+	 - ![](attachment/848331a934c08e380ecb5584ec272dda.png)
+	 - ![](attachment/daec115262cc7def88e4042e441a3bee.png)
+	 - ![](attachment/b52d0d9e177a635b9733ea88376c2288.png)
+## Szabadesés
+- g - nehézségi gyorsulás
+- g kb 10m/s^2
+- minden test(függetlenül a tömegétől) ezzel a gyorsulással esik
+- ![](attachment/c91563b0220647080640f2bfc22630de.png)
+- 1. feladat : ![](attachment/3e29c1b02b971782b5406d8ef8539516.png)
+	- ![](attachment/d8160b4e6ba3030217e21b3a224f13a1.png)
+- 2.feladat
+	- ![](attachment/fdb2aff25c6d5f4763f46f6718a4043b.png)
+- 3. feladat
+	- ![](attachment/290ac28eaf3224b956eeae948ba0ff26.png)
+## Ferde hajitás
+- ![](attachment/cfee0912644ca0f197a05f957b15d444.png)
+- 2 részre lehet bontani
+	- x irányú
+		- ![](attachment/2b9708d55c085e0862f99ee8ab09bc6e.png)
+	- y irányú 
+		- ![](attachment/72540691ed69823ec51062516a4dbdfb.png)
+- ![](attachment/8cb2c7157db0186caa85fee490f316fe.png)
+- ![](attachment/8884819b81b5d2ec4b17563187db4aa5.png)
+- ![](attachment/2e3cf2726f2e909152ec52d728f84ef2.png)
+- ![](attachment/03c64a84900fc63bd7d283d4896cf47d.png)
+- 

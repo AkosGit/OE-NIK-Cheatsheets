@@ -1,0 +1,23 @@
+## Surlódási erő
+- ![](attachment/22bd0ef0ead7d1f81ecf2bba14082dcd.png)
+- ![](attachment/2005531cc6ab060d333a7925c9c09b03.png)
+- F=m\*a -> vektror egyenéet és minden iránnyal ki kell számolni
+- példa
+	- ![](attachment/1e94a0e72511b731aa86237b714e72a0.png)
+	- d:
+		- ![](attachment/926badffd2aeb2020c07c50e495c0f32.png)
+## Erő munkája, mechanikai rendszer energia
+- erőhatások végeznek munkát
+- ![](attachment/8976f73ca77fe370f589aa50e1ad8d72.png)
+- ![](attachment/4d7c5ac8ca90fb14461095ebbed315b5.png)
+- ![](attachment/767c6cb42483d10af912357f4305cded.png)
+- munka pozitv: erő munkát végez a testen
+- munka negativ: ha én ellenállok a gravitációs erőnek akkor gravitációnak a munkája negativ lesz.....
+- pl
+	- ![](attachment/5e26c5a075f61e449f2af88f93f34005.png)
+- ![](attachment/9e0e5ecd60786bbe60a38e252350ca10.png)
+- ![](attachment/5529bce7ef96c136da6e9220584ee234.png)
+- ![](attachment/e90bd23f3a1829f9383f3595f247f36c.png)
+- ![](attachment/a331a08c6eda7794a01b6fb34bfb06be.png)
+- ![](attachment/210a8638fd4d98e4313bdc0103701df9.png)
+-  

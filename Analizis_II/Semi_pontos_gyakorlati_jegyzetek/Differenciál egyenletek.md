@@ -1,0 +1,13 @@
+- Rend: hányadik derivált
+- x: független változó, y': függö 
+- lineáris: ismeretlen(y) legfeljebb első fokon
+- homogén: nincs benne c(x) (tehát egyenlő 0)
+- inhomogén: c(x) a vége (nem egyenlő 0)
+- kezdeti feltétel: y(valami)
+- két megoldás: homogén,partikuláris
+- állandó együtthatós: y'+f(x)y=g(x) ahol f(x) konstans ami az együttható
+## Megoldási módszerek
+- Szétválasztás módszere
+- partikuláris megoldás megadása(lineáris inhomogén)
+- Két megoldás megadása képlettel(lineáris)
+	- ![](attachment/699463895872ee5a6172d490ae4d6fb2.png)

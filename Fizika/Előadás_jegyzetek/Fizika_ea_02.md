@@ -1,0 +1,80 @@
+## Differenciaszámitás
+- f(t) -> milyen gyorsan változik a fügvény
+- időbeli változást vizsgálunk
+- ha ez a határérték létezik akkor ez a derivált
+- ![](attachment/25664f2d28e1b4dec59629f4f8101d5c.png)
+## Integrálás
+- határozatlan integrál (primitv fügvény keresés)
+	- ![](attachment/9fa212050c1b13bb16627babe922ce82.png)
+- határozott integrál
+	- ![](attachment/92807fcd965a4dfada94c62b96797a80.png)
+	- munka kiszámitása két hely között ha az erő nem álandó
+- Newton Leibnitz
+	-  ![](attachment/47dccfb8910e31dcb94ac1e6d5c9fcfe.png)
+## Fizikai mennyiségek
+- pl.: tömeg, hőmérséklet
+- (jelölése) = (iránya(előjele)) + (értéke) + (mértékegysége)
+	- m = +3 kg
+	- v = - 10 m/s
+## Mechanikai alapmennyiségek
+- tömeg,hossz,idő -> bármilyen fizika mennyiség kikeverhető
+- tömeg: jelölés -> m, mértékegység(SI) -> kg, dimenzió(fiz mennyiség jellege) -> M
+- hossz: jelölés -> l, mértékegység(SI) -> m,  dimenzió -> L
+- idő: jelölés -> t, mértékegység(SI) -> Sec(s), dimenzió -> T
+- a dimenzió nem alapmennyiségeknél
+	- térfogat: \[V\] = L^3
+	- terület:  \[A\] = L^2
+	- ![](attachment/29dcf5e04871fe878001e2505b847f11.png)
+- amit mi dimenziónak gondolnánk az a kitevő 
+- arányosságból egyenlőség: $a\alpha b, a=cb$ 
+	- arányossági tényezővel (c)
+	- ![](attachment/fe1afc4bd192c1ccd457a21e473ca3d8.png)
+- mire jó a dimenzió?(dimenzió analizis)
+	- ellenőrizzük a képletek helyességét
+		- nem adja meg az arányossági tényezőt
+		- csak a végén szabad behelyetesiteni
+		- ha van dimenzió egyezés akkor lehet
+		- tömegpont helyzete arányos($\alpha$) az adott tömegpont gyorsulásával és az idő négyzetével
+			- $x\alpha a\times t^2$ 
+			- ![](attachment/c902ce63c404ad4ccb0aa30a692ae08c.png)  
+	-  összefüggések meghatározása fizikai mennyiségek között
+		- tőmegpont körpályán mozog egyenletes sebességgel, sebesség mértéke konstant de irány ya nem
+			- ![](attachment/03aff47147dcab09e10eb7f35d02cc67.png)
+	- nagyságrendi becslés 
+		- a nagyságrend legalább 10* különbség
+		- ![](attachment/1b08e385fc8116b02fa343377f5a6ee7.png)
+		- hf levegő vétel/70 év 1 perc alatt egy levelgő
+## Klasszikus mechanika
+- nem kvantum mechanika
+- makroszópikus tárgyakkal foglalkozik(nem atomi szint)
+- a mozgások lassúak
+	- V<< C -> v mozgáss kissebb mint a fény sebessége
+- Newton féle mechanika
+	- newton axiómák 4db
+## Mozgás 1 dimenzióba
+- mechanika
+	- kinematika -> mozgás leirása, mozgás hogyan jön létre
+	- dinematika -> erők
+- ![](attachment/5ac56a50cdea048732aeda201f3a1971.png)
+- leirás szemléltetés
+	- út-idő grafikon
+	- ![](attachment/bd73ed49e9ac545c610302db4f42bcaf.png)
+		- meredekség emelkedik -> sebsség pozitiv, meredekség 0 -> meredekség csökken -> negativ lesz (vissza fele megy)
+	- pályája
+		- ![](attachment/1a8d4fb1b65d11cb14c6dc3572847de4.png)
+-  átlagos sebesség
+	- előjeles mennyiség
+	- ha vissza tér a kezdő pontra akkor az átlagos sebsség 0 
+	- ![](attachment/3bfeea140b2e3b29b48f4da8ff164ced.png)
+	- ![](attachment/00c9b1314837bb02ce1ece6e7a8eb5c8.png)
+- átlag sebesség
+	-  ![](attachment/62a2e61c3756bdbb5fbd0d8c92495ac3.png)
+	- csak pozitiv lehet
+	- csak akkor lehet 0 ha a teljes út is 0
+- pilanatnyi sebesség
+	-  ![](attachment/b816869438b8161da5c1e82f9d74274e.png)
+	- ![](attachment/e2ee2b39b0d99679de47a19db44911c1.png)
+	- ![](attachment/7c99db009441e0c19e736d1af49a0927.png)
+- sebesség
+	- ![](attachment/d33fa44cf6d49105b479b39fe7462bc1.png)
+	-  

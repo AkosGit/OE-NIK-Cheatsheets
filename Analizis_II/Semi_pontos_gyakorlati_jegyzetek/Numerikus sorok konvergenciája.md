@@ -1,0 +1,54 @@
+# Numerikus sorok konvergenciája
+- Hasznos szabályok
+	- $\frac{\frac{x}{y}}{\frac{z}{w}}=\frac{x}{y}*\frac{w}{z}$
+	- $\frac{a}{\frac{b}{c}}=\frac{a\cdot \:c}{b}$
+	- $3^{k+1}=3^k*3$ 
+	- $3^{3k}=9^k$
+	- $\frac{n!}{\left(n+m\right)!}=\frac{1}{\left(n+1\right)\cdot \left(n+2\right)\cdots \left(n+m\right)}$ => $\frac{k!}{\left(k+1\right)!}=\frac{1}{\left(k+1\right)}$ 
+	- ki lehet egyszerüsiteni a faktoriálisokat
+		- $\left(k+7\right)!=\left(k+7\right)\cdot \left(k+6\right)\cdot \ldots \cdot \:2\cdot \:1$ 
+- Konvergencia szükséges feltétele: $\lim _{x\to \infty \:}a_k=0$. 
+	- ha nem egyenlö 0 akkor divergens
+	- Mindig érdemes ezt vizsgálni elsőnek, felesleges melótól menthet meg
+	- [[Határérték számitás]]
+ - Mértani sorok konvergenciája
+	 - Ha $q^k$ és $-1<q<1$ akkor konvergens 
+- Majorálás, minorálásás
+	- "Konvergens sorral majorálunk, divergens sorral minorálunk"
+	- Majorálás: a választott konvergens sornak nagyobb kell lennie mint a fügvényünknek
+	- Minorálás: a választott divergens sornak kissebbnek kell lennie mint a fügvényünknek
+	- Választás: elhagyunk elemeket a sorból beszórzás után vagy hozzáirunk valami hogy tudjuk egyszerüsiteni
+	- ![](attachment/fde7594b80efa092842bf3c5c03a67a9.png)
+	-  Elhagyhatóak a sorból nem k tagok
+		- vissza lehet vezetni divergensre:  $\frac{1}{k}$ 
+		- ![](attachment/34f4281adebd1b0034c3d2a20ee299a6.png) 
+- Integrálkritérium
+	- Akkor használjuk, ha már nagyon el vagyunk keseredve, és mindegyik előző kritérium 1-et dobott határértéknek, és nem lehet majorálni-minorálni sem.
+	- ![](attachment/3b1c5df31f661160ee842e4f7313a7cf.png)
+- Hányadoskritérium (ratio test)
+	- ![](attachment/fbda7b511fcf2687f7aa2dea3d87c386.png)
+	- ha valami faktoriális, vagy $a^{k+x}$  szerepel a sorban.
+	- ha van a tört mindkét oldalán $k$ 
+	- $(\frac{x}{y})^{k+v}$ : formára alakitás határértékhez  
+	-  $\frac{\frac{x}{y}}{\frac{z}{w}}=\frac{x}{y}*\frac{w}{z}$ 
+- Gyökkritérium
+	- ![](attachment/92fd25d1d4f17953e5332cb8162fdd8e.png)
+	- root test
+	- Ha $a^n$ van az egész akkor érdemes
+	- Általában akkor használjuk, ha valami k.gyök szerepel a sorban.
+- ABS value test
+	-  ![](attachment/dae864b7fe90b3b565f564455a7621c4.png)
+- Geometric test
+	- ![](attachment/abcba5fc2fe23c0ddf81f174042ec694.png)
+- Alternating series test (Leibniz-féle sor)
+	- Leibniz-féle sor: elkezded felírni a sor tagjait, és ha pozitív és negatív tagok váltják egymást, a tagok abszolút értéke egyre kisebb, akkor ez egy Leibniz-féle sor. Ez meg csak akkor konvergens, ha az általános tag határértéke 0. Pl. akkor jöhet szóba, ha (-1)k vagy valami hasonló kifejezés van a sorban mint szorzó.
+	- ![](attachment/16267980f9b3761fb7ce29b43ef061e3.png)
+- Teleszkópos sorozat (telescoping series)
+	- Ha az összegnek van határértéke és az nem végtelen akkor konvergens
+	-  ![](attachment/74af5396c48c81b2bcbf16eb71460f32.png)
+## Két sorozat összehasonlitása
+- Direct comparison
+	- ![](attachment/68084182801e0ff39d4909116cff3516.png)
+- Limit comparison test
+	- ![](attachment/d1b954a4c2324b499307c972f796ae23.png)
+ 

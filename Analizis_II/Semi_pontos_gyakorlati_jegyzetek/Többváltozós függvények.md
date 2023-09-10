@@ -1,0 +1,22 @@
+## Többváltozós függvények
+- Értelmezási tartomány
+	- (x,y) eleme R^2
+	- f(x) >= 0 kindulás
+	- -1 szorzás miatt megfordul
+	- ![](attachment/2003781c0e1a956602402f55958d6b4b.png)
+- Szintvonal
+	- z=x+y, z helyére behelyetesitünk y=x.. -re alakitjuk
+	- ![](attachment/99a88363df34911ade52cbddba635eec.png)
+- Parciális differenciál
+- Teljes differenciál:
+	- Mindig egy adott ponthoz tartozik. 
+	- Kiszámolod mindkét változó szerint az első deriváltat, és ezeket összeadod. 
+	- Az x szerintit megszorzod dx-el, y szerintit dy-nal.
+	- ![](attachment/feb03d2df85a6c40ac3bfa06b8d96e1e.png)
+-  Gradiens vektor
+	- Lényegében egy adott pontbeli első parciális deriváltakat bepakolod egy vektorba. Két változó esetén értelemszerűen ennek a vektornak 2 koordinátája van:
+	- ![](attachment/4b49f6e559699bfab39b87022107d32b.png)
+- Felületnek az origóhoz legközelebb esö pontjat
+	- ![](attachment/955529071b1c679565734265eb0f99ae.png)
+- Véges növekmények tétele
+	- ![](attachment/1371b99117e893867a6deeff6279ff85.png)

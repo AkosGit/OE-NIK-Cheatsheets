@@ -1,0 +1,41 @@
+## Matematika gyorstalpaló
+- vektorok
+	- hossza (valósszám),iránya
+	- vektorterekben vannak n dimenzióban
+	- 3D-ben -> 3db szám komponensek
+	- fizikai mennyiségek: erő,gyorsulás,mágneses indukció,
+- skalárok
+	- valós vagy komplex számok
+	- görög betükkel jelöljök $\alpha,\beta,\gamma ...$ 
+	- fizikai mennyiségek: idő,út,energia,tömeg,töltés,sűrűség, hőmérséklet
+- tenzorok
+	- mátrix reprezentáció
+#### Vektor müveletek
+- vektorok összeadása
+	- ![](attachment/c4ec483c7a7d5ccf819a672a4f94bf72.png)
+- skaláris szorzás
+	- ![](attachment/3205a4d3c5797dcfb98ec7d2e741923f.png)
+- egységvektor
+	- ![](attachment/7156f6209d0c06273ddbacf45806be75.png)
+- vektoriális szorzás
+	- ![](attachment/10097b333f950757316f269774a709bf.png)
+- ![](attachment/25e59470afd2221c1a04f631d9ad4d3d.png)
+- Descartes féle koordináta rendszer 
+	- pontok helyzetét leirjuk
+	- derékszögü koordináta rendszer
+	- ![](attachment/02273395a3fc7d43ae06ac4ca258144c.png)
+	- linerárisan független:  
+	- komponensek: vektor vetületei
+	- egy vektor felirható a komponenseivel
+		- ![](attachment/bd49f244a5a02c5f2759a980c66726de.png)
+	- ortonormál rendszer
+		- (orto)merőleges egymásra merőleges egyenlö ()(normál)egységnyi vektorok    
+	- vektorok skalárszorzása komponensekkel
+		- minden tagot minden taggal való szorzás
+		-  ha a merőleges b-re akkor skalárszorzatuk 0 	
+		- ![](attachment/3a365d73be86e4b8e249568ab4e50ded.png)
+	- vektoriális szorzat komponensekkel
+		- ![](attachment/3ec35dd43f613cd7dd6254ea21d5137e.png)
+		- egyszerübb megoldás(ciklikus)
+			- ![](attachment/e6db978f1ee7f4bb1e13774b16b6d9fc.png)
+		-  
